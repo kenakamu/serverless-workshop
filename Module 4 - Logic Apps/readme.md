@@ -75,7 +75,7 @@ POST http://{myFunctionEndpoint}/api/iceCreamOrder
 ![Email with options](./images/email-options.jpg)
 1. Once customer selected an option, it will be captured and send back to Logic App for it to continue it's execution. Let's store it in the Cosmos DB first.
 1. Search and add **Cosmos - Create or update document** action.
-1. Select `icecream` as **Database ID**, `reviews` as **Collection ID**, and the following JSON object as **Doument**.
+1. Select `icecream` as **Database ID**, `reviews` as **Collection ID**, and the following JSON object as **Document**.
 ```json
 {
   "id": "[Use expression editor to insert guid() expression]",
