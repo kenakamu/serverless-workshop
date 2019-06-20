@@ -119,6 +119,12 @@ POST http://{myFunctionEndpoint}/api/iceCreamOrder
 
   What we are doing here is taking the body of the HTTP request and making it the data payload of an Event Grid event. Then all we have to do is add our SAS key as a header value and make an HTTP POST to the topic endpoint with our event as the message body.
 
+1. Install and save dependencies used in the function above by executing the following command:
+
+```
+npm install uuid@3.3.2 ms-rest-azure@2.6.0 azure-eventgrid@1.6.0 url@0.11.0 --save
+```
+
 1. Update the contents of the `function.json` file in the `IceCreamOrder` folder to the following by deleting the GET method from the input binding:
 
     ```json
@@ -149,13 +155,13 @@ POST http://{myFunctionEndpoint}/api/iceCreamOrder
 
 1. If you have not already created an Event Grid Viewer web app, deploy one now by clicking the button below.
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-event-grid-viewer%2Fmaster%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-event-grid-viewer%2Fmaster%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 
 1. Navigate to your website at `https://<your-site-name>.azurewebsites.net`.
 
   ![View new site](./media/grid-viewer.png)
 
-1. Now, to see your orders flowing in real time, open the Azure Portal and navigate to your ice cream order Topic. Create an new event subscription on the topic and set the endpoint to `https://<your-site-name>.azurewebsites.net/api/updates`.
+1. Now, to see your orders flowing in real time, open the Azure Portal and navigate to your ice cream order Topic. Create an new event subscription on the topic and set the Endpoint Type to **Web Hook** and the subscriber endpoint to `https://<your-site-name>.azurewebsites.net/api/updates`.
 
   * You will see a Subscription Validation Event appear in your viewer - this is part of [Event Grid's security model](https://docs.microsoft.com/en-us/azure/event-grid/security-authentication), however in this case the viewer handles things for you, so nothing further is required by you.
 
@@ -241,7 +247,7 @@ Two sets of sample files have been provided for you in the supporting-files fold
 1. Using Event Grid will allow you to subscribe to `Microsoft.Storage.BlobCreated` events and have then pushed anywhere in real time. [Here is a quickstart](https://docs.microsoft.com/en-us/azure/event-grid/blob-event-quickstart-portal).
 1. You can deploy a pre-built web app by clicking the button below to send your events to and see them flowing in real time. Super handy for testing.
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-event-grid-viewer%2Fmaster%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+    <a href="https://azure.microsoft.com/de-de/resources/samples/azure-event-grid-viewer/" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
 
     * Connect Event Subscriptions to the website by setting the Subscription's Endpoint to `https://<your-site-name>.azurewebsites.net/api/updates`.
     * View your website by navigating to `https://<your-site-name>.azurewebsites.net`.
