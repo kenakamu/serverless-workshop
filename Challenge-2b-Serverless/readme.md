@@ -1,4 +1,10 @@
-# Challenge 2 - Cosmos DB and Azure Functions
+# Challenge 2b - Cosmos DB and Azure Functions with Serverless
+
+This challenge is about building out `Challenge 2` using [Serverless Framework](https://serverless.com/framework/docs/)
+
+<details>
+
+<summary>Click to expand Challenge 2 details!</summary>
 
 Best For You Organics Company (BFYOC) has begun the creation of a mobile application and website, both of which will be used to update products and submit feedback for their ice cream. The website and application will be calling a set of APIs.
 
@@ -113,10 +119,13 @@ Your challenge is to create and deploy the following three functions:
 - [Azure Functions HTTP and webhook bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook)
 - [Store unstructured data using Azure Functions and Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/azure-functions/functions-integrate-store-unstructured-data-cosmosdb)
 
+</details>
+
+## References
+
+- [How to Create a REST API with Azure Functions and the Serverless Framework](https://serverless.com/blog/serverless-azure-functions-v1)
+- [Serverless docs](https://serverless.com/framework/docs/providers/azure/)
+
 ## Next Challenge
 
-Once you have your function working and deployed, you have 2 options:
-
-1. proceed to the next challenge and begin - [Logic Apps](..//Challenge-3-Logic-Apps/readme.md).
-
-1. take a detour and attempt `Challenge 2b` with [Serverless](..//Challenge-2b-Serverless/readme.md)
+Once you have your function working and deployed, proceed to the next challenge and begin - [Logic Apps](..//Challenge-3-Logic-Apps/readme.md).
