@@ -38,7 +38,7 @@ Create a new Logic App that is triggered by a HTTP request. Use the sample paylo
 
 Add the user feedback, along with the sentiment score, to a new collection in the Cosmos DB database that was created in the previous challenge.
 
-* **Partion key**: Use the `productId` as the partition key.
+* **Partition key**: Use the `productId` as the partition key.
 * **Feedback example**:
 
     ``` JSON
