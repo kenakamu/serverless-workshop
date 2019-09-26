@@ -189,7 +189,7 @@ Which would add a new document to CosmosDB with the corresponding product inform
     }
     ```
 
-    To get our functions running we need to do two things.  First we need to add a connection string for `AzureWebJobsStorage`.  This is a storage account the function will use for state and to integrate with some triggers and bindings like CosmosDB.  The seccond is we need to add a new settings `CosmosDbConnectionString`.  This is the setting that will give our previous functions access to the cosmosDB account we created.
+    To get our functions running we need to do two things. First we need to add a connection string for `AzureWebJobsStorage`. This is a storage account the function will use for state and to integrate with some triggers and bindings like CosmosDB.  The second is we need to add a new settings `CosmosDbConnectionString`. This is the setting that will give our previous functions access to the cosmosDB account we created.
 
 1. Open the Azure Portal to the resource group with your published function app from step 1.  You should see a Storage Account in that resource group (green square icon).  Open it, select **Access Keys** in the left-hand nav, and copy the **Connection string** for **key1**.  Paste this value in the quotes for `AzureWebJobsStorage` in the `local.settings.json` file.
 1. Add a new `Values` for `CosmosDbConnectionString` in the `local.settings.json` file and paste in the connection string from the CosmosDB account created in the earlier steps.

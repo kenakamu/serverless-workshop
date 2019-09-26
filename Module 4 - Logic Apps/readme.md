@@ -28,7 +28,7 @@ Upon receiving the event, the Logic App will query Cosmos DB to retrieve the pro
 ### Tips
 
 1. First things first, make sure your machine is all set up and can sign into [Azure Portal](https://portal.azure.com).
-1. If you have neither Outlook 365 nor Outlook.com account, [sign up for a free Outlook.com account]().
+1. If you have neither Outlook 365 nor Outlook.com account, [sign up for a free Outlook.com account](https://outlook.live.com/).
 1. If you did not complete Module 3, don't worry, instead of using event to trigger the Logic App, use a **Request** trigger instead.
 1. You will also need another Cosmos DB collection to store customer's feedback, so make sure to create one within the same database you created in Module 2.
 
@@ -38,8 +38,8 @@ Upon receiving the event, the Logic App will query Cosmos DB to retrieve the pro
   
 1. Navigate to [Azure Portal](https://portal.azure.com)
 1. Create a new Logic App and navigate to the newly created Logic App
-1. Edit on **Edit** to launch Logic App designer, select **Start from blank** on the template page
-1. Select `Event Grid` from the list then select `When a resource event occurs` trigger
+1. Scroll down to the Templates section and select **Blank Logic App** on the template page
+1. Select `Azure Event Grid` from the list then select `When a resource event occurs` trigger
 ![Event Grid trigger](./images/event-grid-trigger.jpg)
 1. Sign in with the same account you used to sign into Azure portal
 1. Fill in **Subscription**, select `Microsoft.EventGrid.Topics` for **Resource Type**, and select the name you of your custom topic created in **module 3**. You may ignore "Event Type Item" selection for this execrise.
@@ -84,7 +84,7 @@ POST http://{myFunctionEndpoint}/api/iceCreamOrder
 ```
 
 ### What's Next?
-It's up to you what action to take when there's an unhappy customer! Send them a email with coupon code, inform a team member to follow up, you decided. Explore more than [200 different products and services](https://docs.microsoft.com/connectors/) Logic Apps connects to out-of-box and build something awesome.
+It's up to you what action to take when there's an unhappy customer! Send them a email with coupon code, inform a team member to follow up, you decide! Explore more than [200 different products and services](https://docs.microsoft.com/connectors/) Logic Apps connects to out-of-box and build something awesome.
 
 For example, consider adding a `Condition` action, and create a rule for when customer selected either **Unsatisfied** or **Very unsatisfied**.
 ![Condition builder](./images/condition-builder.jpg). In the **If true** branch, send an e-mail to BFYOC team to alert them when there's an unhappy customer.
