@@ -60,7 +60,7 @@ With API Management now in place as a facade to their backend APIs, it's time to
 
 ### Add Cache Support
 
-BFYOC does not anticipate their list of products changing frequently and would like to employ some caching on the Azure Functions that retrieve their product information. To make this happe, they are asking you to:
+BFYOC does not anticipate their list of products changing frequently and would like to employ some caching on the Azure Functions that retrieve their product information. To make this happen, they are asking you to:
 
 * Add caching support to the GET operations of the Products API.
 * Cache the results for 60 seconds.
