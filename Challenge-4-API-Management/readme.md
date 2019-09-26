@@ -75,3 +75,7 @@ BFYOC does not anticipate their list of products changing frequently and would l
 * [Subscriptions in API Management](https://docs.microsoft.com/en-us/azure/api-management/api-management-subscriptions)
 * [API Gateway pattern](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern)
 * [Use an external cache](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-cache-external)
+
+## Next Challenge
+
+Once you have API Management in place, proceed to the next challenge and begin - [Event Grid](..//Challenge-5-Event-Grid/readme.md).
