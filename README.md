@@ -55,4 +55,8 @@ BFYOC would like to launch a new customer feedback tool to analyze their sales a
 
 ## Your Challenge
 
+Over the next several hours, you will use multiple Azure Serverless components to build an API which will be a key part of BFYOC's new customer feedback tool.  The diagram below provides an overview of your journey.
+
+![Challenge Path Overview](./Images/challenge-path.png)
+
 Are you ready?  Proceed to your first challenge - [creating and deploying an Azure Function](./Challenge-1-Azure-Function-Basics/readme.md).
