@@ -14,18 +14,19 @@ The diagram above shows how [Azure Functions](https://azure.microsoft.com/en-us/
 
 Provision and configure an instance of Cosmos DB as the database for the BFYOC products.
 
-* Review the [binding options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2) for Cosmos DB and Azure Functions.
-* Leverage the SQL API if you wish to use the Azure Functions bindings suppport.
+- Review the [binding options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2) for Cosmos DB and Azure Functions.
+- Leverage the SQL API if you wish to use the Azure Functions bindings suppport.
 
 ### Create the APIs
 
 Your challenge is to create and deploy the following three functions:
 
-* **CreateProduct**
-  * **Verb**: POST
-  * **Input payload example**:
+- **CreateProduct**
 
-    ``` JSON
+  - **Verb**: POST
+  - **Input payload example**:
+
+    ```JSON
     {
        "productId": "75542e38-563f-436f-adeb-f426f1dabb5c",
        "productName": "Starfruit Explosion",
@@ -33,14 +34,15 @@ Your challenge is to create and deploy the following three functions:
     }
     ```
 
-  * **Requirements**
-    * Add a property called `id` with a GUID value
-    * Add a property called `timestamp` with the current UTC date time
-    * Add the product to the Cosmos DB data store
-    * Return the entire JSON payload with the newly created `id` and
-     `timestamp`, for example:
+  - **Requirements**
 
-      ``` JSON
+    - Add a property called `id` with a GUID value
+    - Add a property called `timestamp` with the current UTC date time
+    - Add the product to the Cosmos DB data store
+    - Return the entire JSON payload with the newly created `id` and
+      `timestamp`, for example:
+
+      ```JSON
       {
         "id": "79c2779e-dd2e-43e8-803d-ecbebed8972c",
         "productId": "75542e38-563f-436f-adeb-f426f1dabb5c",
@@ -50,14 +52,16 @@ Your challenge is to create and deploy the following three functions:
       }
       ```
 
-* **GetProduct**
-  * **Verb**: GET
-  * **QueryString or route parameter**: `productId`
-  * **Requirements**
-    * Get the product from your database and return the entire JSON payload for
-     the product identified by the id, for example:
+- **GetProduct**
 
-      ``` JSON
+  - **Verb**: GET
+  - **QueryString or route parameter**: `productId`
+  - **Requirements**
+
+    - Get the product from your database and return the entire JSON payload for
+      the product identified by the id, for example:
+
+      ```JSON
       {
         "id": "79c2779e-dd2e-43e8-803d-ecbebed8972c",
         "productId": "75542e38-563f-436f-adeb-f426f1dabb5c",
@@ -67,13 +71,15 @@ Your challenge is to create and deploy the following three functions:
       }
       ```
 
-* **GetProducts**
-  * **Verb**: GET
-  * **Requirements**
-    * Get all the products from the database and return the entire
+- **GetProducts**
+
+  - **Verb**: GET
+  - **Requirements**
+
+    - Get all the products from the database and return the entire
       JSON payload for each one, for example:
 
-      ``` JSON
+      ```JSON
 
       [
         {
@@ -96,17 +102,21 @@ Your challenge is to create and deploy the following three functions:
 
 ## Success Criteria
 
-* Test all three functions and deploy them to Azure.
-* The endpoints should return standard HTTP status codes. For example, 404 when items are not found.
+- Test all three functions and deploy them to Azure.
+- The endpoints should return standard HTTP status codes. For example, 404 when items are not found.
 
 ## References
 
-* [Azure Functions triggers and bindings concepts](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
-* [Introduction to Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
-* [Azure Cosmos DB bindings for Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2)
-* [Azure Functions HTTP and webhook bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook)
-* [Store unstructured data using Azure Functions and Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/azure-functions/functions-integrate-store-unstructured-data-cosmosdb)
+- [Azure Functions triggers and bindings concepts](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
+- [Introduction to Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
+- [Azure Cosmos DB bindings for Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2)
+- [Azure Functions HTTP and webhook bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook)
+- [Store unstructured data using Azure Functions and Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/azure-functions/functions-integrate-store-unstructured-data-cosmosdb)
 
 ## Next Challenge
 
-Once you have your function working and deployed, proceed to the next challenge and begin - [Logic Apps](..//Challenge-3-Logic-Apps/readme.md).
+Once you have your function working and deployed, you have 2 options:
+
+1. proceed to the next challenge and begin - [Logic Apps](..//Challenge-3-Logic-Apps/readme.md).
+
+1. take a detour and attempt `Challenge 2b` with [Serverless](..//Challenge-2b-Serverless/readme.md)
