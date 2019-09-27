@@ -10,38 +10,9 @@ Your code, logic, integration and imagination is all you need to bring – the s
 
 ## Target Audience
 
-* This event is for software engineer / developer roles, however anyone interested in learning more about Azure and serverless functionality is welcome to attend.
+* This event is for software engineer / developer roles, however anyone interested in learning more about Azure and serverless functionality is welcome to attend.  Please review the [prerequisites](./prereqs.md) to ensure your environment is ready for the workshop.
 
 * Especially beneficial to those that work with organizations who are planning to build serverless architectures on the cloud or organizations planning to automate business processes.
-
-## Requirements
-
-* A modern laptop running Windows 10, Mac OSX, Mac OS X 10.12 or higher
-* Your preferred IDE (integrated development environment). Recommendations:
-  * [Visual Studio Code](https://code.visualstudio.com/)
-  * [Visual Studio 2019](https://visualstudio.microsoft.com/)
-  * [Eclipse](https://www.eclipse.org/downloads/packages/)
-  * [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
-* .NET - [.NET Core 2.1 SDK or higher](https://dotnet.microsoft.com/download)
-* JavaScript - [NodeJS](https://nodejs.org/en/) (8.11.1 or 10.14.11 recommended)
-* The latest version of the [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local).
-* The latest version of the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
-* You must have access to either an [Azure Subscription](https://azure.microsoft.com/en-us/free/) or [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups) for which you are either an [Owner or Contributor role](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#built-in-role-descriptions).
-
-## Agenda
-
-| From     | To       | Session                                     |
-|----------|----------|---------------------------------------------|
-| 8:30 AM  | 9:00 AM  | Check-in & breakfast                        |
-| 9:00 AM  | 10:00 AM | Azure Serverless Overview                   |
-| 10:00 AM | 10:15 AM | Break                                       |
-| 10:15 AM | 10:30 AM | Challenge Overview                          |
-| 10:30 AM | 12:00 PM | Code Challenge                              |
-| 12:00 PM | 1:00 PM  | Lunch Break                                 |
-| 1:00 PM  | 1:30 PM  | Using Serverless Framework with Azure       |
-| 1:30 PM  | 1:45 PM  | Break                                       |
-| 1:45 PM  | 4:30 PM  | Code Challenge                              |
-| 4:30 PM  | 5:00 PM  | Wrap Up                                     |
 
 ## Preface
 
@@ -53,10 +24,25 @@ Because premium ingredients are key to their success, their profit margins are r
 
 BFYOC would like to launch a new customer feedback tool to analyze their sales and customer satisfaction levels. Because feedback posts from customers will be sporadic, they are looking for options that can automatically scale, and minimize investment in infrastructure.
 
-## Your Challenge
+## Challenges
 
-Over the next several hours, you will use multiple Azure Serverless components to build an API which will be a key part of BFYOC's new customer feedback tool.  The diagram below provides an overview of your journey.
+Over the next [several hours](./agenda.md), you will use multiple Azure Serverless components to build an API which will be a key part of BFYOC's new customer feedback tool.
+
+| Challenge                      | Description       |
+|--------------------------------|-------------------|
+| Azure Function Basics          | Create a basic HTTP-triggered Azure Function and deploy it to Azure.  |
+| Cosmos DB and Azure Functions  | Create a HTTP-triggered Azure Function which uses output bindings to persist data to Cosmos DB.  |
+| Logic Apps                     | Create a Logic App workflow which accepts user feedback via an HTTP post, detects the sentiment of the feedback, persists the feedback in a Cosmos DB database, and sends an email for unfavorable feedback.  |
+| API Management                 | Use API Management to provide a uniform API endpoint, as well as API versioning and rate limiting.  |
+| Event Grid                     | T.B.D.  |
+| Serverless Framework           | Use the Azure plug-in for Serverless Framework to explore an alternative approach to creating and deploying an HTTP-triggered Azure Function which uses Cosmos DB.  |
+
+### Challenge Path
+
+The diagram below provides an overview of your journey. You can choose to complete the challenges sequentially, from challenge 1 through to challenge 5.  Alternatively, you can elect to complete the Serverless Framework challenge after challenge 2 (since the two challenges are very similar), and then continue with challenge 3.  You can think of challenge 2b as an exciting detour before continuing on your Azure Serverless journey.
 
 ![Challenge Path Overview](./Images/challenge-path.png)
+
+## Next
 
 Are you ready?  Proceed to your first challenge - [creating and deploying an Azure Function](./Challenge-1-Azure-Function-Basics/readme.md).
