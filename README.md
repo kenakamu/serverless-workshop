@@ -34,7 +34,7 @@ Over the next [several hours](./agenda.md), you will use multiple Azure Serverle
 | Cosmos DB and Azure Functions  | Create a HTTP-triggered Azure Function which uses output bindings to persist data to Cosmos DB.  |
 | Logic Apps                     | Create a Logic App workflow which accepts user feedback via an HTTP post, detects the sentiment of the feedback, persists the feedback in a Cosmos DB database, and sends an email for unfavorable feedback.  |
 | API Management                 | Use API Management to provide a uniform API endpoint, as well as API versioning and rate limiting.  |
-| Event Grid                     | T.B.D.  |
+| Event Grid                     | Use Event Grid to publish events to multiple subscribers whenever customer feedback is received.  |
 | Serverless Framework           | Use the Azure plug-in for Serverless Framework to explore an alternative approach to creating and deploying an HTTP-triggered Azure Function which uses Cosmos DB.  |
 
 ### Challenge Path
