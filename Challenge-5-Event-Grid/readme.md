@@ -14,12 +14,12 @@ Best For You Organics Company would like for you to leverage Azure [Event Grid](
 
 ### Create a Event Grid Topic
 
-Event sources for Event Grid can originate from many Azure services such as Blob Storage, Azure Maps and Resource Groups. In this scenario, a custom event is needed when new feedback is received from a customer. This will require a custom Event Grid topic to be created with the following requirements:
+Event sources for Event Grid can originate from many Azure services such as Blob Storage, Azure Maps and Resource Groups. In this scenario, a custom event is needed when new feedback is received from a customer. This will require a Event Grid topic to be created with the following requirements:
 
 * Create a Event Grid Topic that is ideally in the same region as the other services you created during this workshop.
 * Select a unique name for the topic. Make note of the topic endpoint and access key for later.
 
-### Raise an event
+### Publish events
 
 BFYOC will publish an event each time product feedback is received. They would like to send the event from the Logic App that you built in a [previous challenge](..//Challenge-3-Logic-Apps/readme.md). To accomodate their request, you must:
 
@@ -36,18 +36,17 @@ BFYOC will publish an event each time product feedback is received. They would l
 
 * Set the `Event Time` property to the current UTC time.
 * Set the 'ID' property to a generated GUID.
-* Set the `Subject` and `Event Type` and properties to any strings values you wish.
+* Set the `Subject` and `Event Type` properties to any strings values you wish.
 
-### Handle an event
+### Subscript and handle events
 
-To ensure that this is working end-to-end, BFYOC would like to see an example of an event being handled by another service after a successful product feedback item is received. To complete this challenge you will:
+To ensure that this is working end-to-end, BFYOC would like to see an example of an event being handled by another service after a successful feedback item is received. To complete this challenge you will:
 
 * Review the list of [event handlers](https://docs.microsoft.com/en-us/azure/event-grid/event-handlers) for Event Grid.
-* Select a handler and create a subscription to the Event Grid topic.
-* Possible ideas include:
+* Select a handler and create a subscription to the Event Grid topic. Possible options include:
   * A [Logic App](https://docs.microsoft.com/en-us/azure/event-grid/event-handlers#logic-apps) that is trigged by an Event Grid event.
-  * An Azure Function that used the Event Grid trigger.
-  * The [Event Grid Viewer](https://github.com/Azure-Samples/azure-event-grid-viewer) that demonstrates how a webhook and website can be used to view new events.
+  * An Azure Function that uses the Event Grid or HTTP trigger.
+  * The [Event Grid Viewer](https://github.com/Azure-Samples/azure-event-grid-viewer) that demonstrates how a webhook and website can be used to view incoming events.
 
 ## Success Criteria
 
