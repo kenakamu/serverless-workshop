@@ -1,6 +1,5 @@
 # Requirements
 
-
 ## Azure Subscription
 
 In order to complete the challenges, you will need access to either an [Azure Subscription](https://azure.microsoft.com/en-us/free/) or [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups) for which you are either an [Owner or Contributor role](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#built-in-role-descriptions).

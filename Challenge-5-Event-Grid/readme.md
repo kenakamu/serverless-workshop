@@ -4,7 +4,7 @@ Best For You Organics Company (BFYOC) has been very pleased with the adoption of
 
 ## Notifications
 
-BFYOC would like to incorporate a way to notify other services within the organization about their incoming product feedback. Since they are unsure of how many services or teams at BFYOC will be interested, they'd like to employ the [publish-subscriber](https://docs.microsoft.com/en-us/azure/architecture/patterns/publisher-subscriber) pattern so that they can accomodate all the interested parties.
+BFYOC would like to incorporate a way to notify other services within the organization about their incoming product feedback. Since they are unsure of how many services or teams at BFYOC will be interested, they'd like to employ the [publish-subscriber](https://docs.microsoft.com/en-us/azure/architecture/patterns/publisher-subscriber) pattern so that they can accommodate all the interested parties.
 
 ![Functions and Cosmos DB](../Images/challenge5.png)
 
@@ -21,7 +21,7 @@ Event sources for Event Grid can originate from many Azure services such as Blob
 
 ### Publish events
 
-BFYOC will publish an event each time product feedback is received. They would like to send the event from the Logic App that you built in a [previous challenge](..//Challenge-3-Logic-Apps/readme.md). To accomodate their request, you must:
+BFYOC will publish an event each time product feedback is received. They would like to send the event from the Logic App that you built in a [previous challenge](..//Challenge-3-Logic-Apps/readme.md). To accommodate their request, you must:
 
 * Add an action to the Logic App that publishes an event to the Event Grid topic you just created.
 * Update the data payload for the event to resemble the following example:
@@ -38,7 +38,7 @@ BFYOC will publish an event each time product feedback is received. They would l
 * Set the 'ID' property to a generated GUID.
 * Set the `Subject` and `Event Type` properties to any strings values you wish.
 
-### Subscript and handle events
+### Create a subscription and handle events
 
 To ensure that this is working end-to-end, BFYOC would like to see an example of an event being handled by another service after a successful feedback item is received. To complete this challenge you will:
 
