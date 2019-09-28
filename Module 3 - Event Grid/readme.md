@@ -1,14 +1,14 @@
-# Module 3 - Making BFYOC event driven
+# モジュール 3 - イベント駆動
 
-BFYOC is also making its marketing efforts event driven. You will be creating a system that will publish your own custom event every time an order is placed. You'll be able to use this system in the next module to trigger downstream apps and workflows.
+BFYOC はイベント駆動でマーケティングを最適化しようとしていて、注文が入るたびにカスタムイベントを発行するシステムが必要です。ここで開発するシステムは次のモジュールでも利用します。
 
-This module will walk you though subscribing to Azure events as well as publishing custom events in order to build event based reactive programs using Azure Event Grid.
+このモジュールでは Azure Event Grid トピックを使って Azure のイベントを取得したり、カスタムイベントを発行するシステムを開発します。
 
-## Challenge
+## チャレンジ
 
-Create an Azure Function that [publishes an event to a custom topic](https://docs.microsoft.com/en-us/azure/event-grid/post-to-custom-topic) with data about the Ice Cream order every time it is triggered.
+アイスクリームの注文が入るたびに注文の内容を [Azure Event Grid のカスタム トピックに投稿する](https://docs.microsoft.com/ja-jp/azure/event-grid/post-to-custom-topic) Azure Function を開発します。
 
-The event posted to the custom topic must be of the form:
+投稿されるトピックは以下の形式とします:
 
 ```json
 [
@@ -27,9 +27,9 @@ The event posted to the custom topic must be of the form:
 ]
 ```
 
-The data payload is the order data, and the outer envelope is the event metadata.
+data のペイロードは注文のデータで、他はイベントのメタデータです。
 
-You may input your order and trigger the Function however you choose, however, we recommend a POST to an HTTP triggered Function as in the first two modules for simplicity:
+関数に対してどのようにデータを渡してもいいですが、すでに開発した 2 つの関数同様 HTTP トリガーの関数に対して POST で渡すことを推奨します:
 
 ```
 POST http://{myFunctionEndpoint}/api/iceCreamOrder
@@ -45,28 +45,25 @@ POST http://{myFunctionEndpoint}/api/iceCreamOrder
 
 ### Tips
 
-1. You will need to start by [creating a custom topic](https://docs.microsoft.com/en-us/azure/event-grid/scripts/event-grid-cli-create-custom-topic) to push your custom events to. This can be done via the portal, CLI, or PowerShell.
-1. You will need to follow the same process as in modules one and two in order to create an HTTP triggered function.
-1. Once you have your function posting to your custom topic, you can test it out by [subscribing to your topic](https://docs.microsoft.com/en-us/azure/event-grid/scripts/event-grid-cli-subscribe-custom-topic) via the Portal, CLI, or Powershell and sending the events to the same web app that you made in part one of this module.
+1. まず [Event Grid のカスタム トピックの作成](https://docs.microsoft.com/ja-jp/azure/event-grid/scripts/event-grid-cli-create-custom-topic) を行う必要がある。
+1. これまでやったモジュール同様、HTTP トリガーの関数を追加。
+1. カスタムトピックを投稿する関数を開発したら、[カスタム トピックのイベントのサブスクライブ](https://docs.microsoft.com/ja-jp/azure/event-grid/scripts/event-grid-cli-subscribe-custom-topic) を使ってトピックをサブスクライブし、動作を確認。
 
-### Guided instructions
+### 詳細な手順
 
-<details><summary>Click to open</summary><p>
+<details><summary>クリックして開く</summary><p>
 
-1. Open the Azure Portal and create an Event Grid Topic.
+1. Azure ポータルから名前を「BFYOCorders」として Event Grid Topic を作成。
   ![Create Custom Topic](./media/create-topic.png)
-  * Note your Topic endpoint and key, you will need these later.
+  * トピックのエンドポイントとキーを後の手順のために保存しておく。
 
-  We are creating the Topic as a place to send an event every time an order is placed for ice cream. This will allow us subscribe to events regarding ice cream orders and decouple any future downstream processes. Our marketing, operations, and management teams could all subscribe to this topic and listen to events relevant to them without modifying this module.
+  アイスクリームの注文が入る度にカスタムイベントを送る先としてトピックを利用。注文に対して処理を行いたいプロセスはトピックをサブスクライブして処理するため、疎結合のシステムを開発できる。マーケティングやオペレーション、またマネージメントチームもトピックをサブスクライブして独自処理を行えるが、その際もイベント送信側は変更が不要。
 
-1. Open your project in VS Code from the previous two modules.
-
-  We need a new function that will handle incoming orders and create an event every time an order is made. Let's go ahead and create that.
-
-1. In the Visual Studio Code extension for Azure Functions, click the lightning bolt icon to add a new function to this app.
-1. Select the current folder and add to the existing app. This function will also be HTTP triggered.
-1. Name it `iceCreamOrder` and give it `anonymous` access permissions.
-1. Replace the code in the new `index.js` for `iceCreamOrder` with the following:
+1. 前回モジュールのプロジェクトを VSCode で開き、注文が入る度にカスタムイベントを作成する関数を開発する。
+1. Azure Functions 拡張の「稲妻アイコン」をクリックして、新規関数を作成。
+1. HTTP trigger を選択。
+1. 名前を `iceCreamOrder`、承認レベルを `anonymous` として作成。
+1. `iceCreamOrder` フォルダの `index.js` を以下のコードに変更:
 
   ```javascript
   var uuid = require('uuid').v4;
@@ -115,17 +112,18 @@ POST http://{myFunctionEndpoint}/api/iceCreamOrder
   };
   ```
 
-  Make sure you update the `<topic-endpoint>` and `<aeg-sas-key>` with that of your topic from the first step.
+  `<topic-endpoint>` と `<aeg-sas-key>` を手元の環境の値に入れ替え。  
 
-  What we are doing here is taking the body of the HTTP request and making it the data payload of an Event Grid event. Then all we have to do is add our SAS key as a header value and make an HTTP POST to the topic endpoint with our event as the message body.
+  ここでは HTTP 要求のボディからデータのペイロードを作成。SAS キーとエンドポイントを利用して、Event Grid トピックにカスタムイベントを追加している。
 
-1. Install and save dependencies used in the function above by executing the following command:
+1. ターミナルより iceCreamOrder フォルダに移動後、依存環境のインストール:
 
 ```
+cd iceCreamOrder
 npm install uuid@3.3.2 ms-rest-azure@2.6.0 azure-eventgrid@1.6.0 url@0.11.0 --save
 ```
 
-1. Update the contents of the `function.json` file in the `IceCreamOrder` folder to the following by deleting the GET method from the input binding:
+1. `function.json` の中身を変更して、バインディングから GET を削除:
 
     ```json
     {
@@ -149,35 +147,35 @@ npm install uuid@3.3.2 ms-rest-azure@2.6.0 azure-eventgrid@1.6.0 url@0.11.0 --sa
     }
     ```
 
-  We are telling our function it should expect an HTTP POST to trigger it not a GET. We don't want the function to be triggered erroneously.
+  これにより、意図したとおり POST のみを受け付けるようになる。
 
-  Now lets test everything to see it running and makes sure it works.
+  コードはこれで全てのため、次にテストを実行。
 
-1. If you have not already created an Event Grid Viewer web app, deploy one now by clicking the button below.
+1. 以下のボタンより Event Grid Viewer web アプリを作成。
 
     <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-event-grid-viewer%2Fmaster%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 
-1. Navigate to your website at `https://<your-site-name>.azurewebsites.net`.
+1. 作成された Web サイト `https://<your-site-name>.azurewebsites.net` に移動。
 
   ![View new site](./media/grid-viewer.png)
 
-1. Now, to see your orders flowing in real time, open the Azure Portal and navigate to your ice cream order Topic. Create an new event subscription on the topic and set the Endpoint Type to **Web Hook** and the subscriber endpoint to `https://<your-site-name>.azurewebsites.net/api/updates`.
+1. 注文がリアルタイムに流れる様子を見るために、Azure ポータルを開き、作成した Event Grid トピックを開く。新規にトピックに対して「イベント サブスクリプション」をクリック。名前を `orderTesting`、エンドポイントのタイプで **Web Hook** を指定し、サブスクライバーのエンドポイントとして、ビューワーである `https://<your-site-name>.azurewebsites.net/api/updates` を指定。
 
-  * You will see a Subscription Validation Event appear in your viewer - this is part of [Event Grid's security model](https://docs.microsoft.com/en-us/azure/event-grid/security-authentication), however in this case the viewer handles things for you, so nothing further is required by you.
+  * サブスクリプションが作成されると「Subscription Validation Event」が表示されるが、これは [Event Grid のセキュリティと認証](https://docs.microsoft.com/ja-jp/azure/event-grid/security-authentication)の一環。これにより他の作業をしなくてもデータを見ることができる。
 
   ![Create event subscription](./media/create-test-subscription.PNG)
 
-1. Click the **Debug** menu and **Start Debugging**.
+1. VSCode にて **デバッグ** より **デバッグの開始** をクリック。
 
-    You should see a new URL in addition to the previous APIs you've created:
+    ランタイム実行時に、これまでの URL に加え、以下アドレスが表示される:
 
     > Http Functions:
     > iceCreamOrder: http://localhost:7071/api/iceCreamOrder
 
-1. Open Postman to create a document.  
-    1. Create a `POST` request to `http://localhost:7071/api/iceCreamOrder`
-    1. Select **Body**, choose **raw** and toggle the type to **JSON (application/json)**
-    1. Add the following order:
+1. Postman を開き、以下ドキュメントを作成。  
+    1. `POST` 要求を `http://localhost:7071/api/iceCreamOrder` に向けて作成。
+    1.  **Body** で **raw** を選択し、**JSON (application/json)** を指定。
+    1. 以下の JSON を追加:
 
     ```json
     {
@@ -186,11 +184,8 @@ npm install uuid@3.3.2 ms-rest-azure@2.6.0 azure-eventgrid@1.6.0 url@0.11.0 --sa
       "email": "hello@contoso.com"
     }
     ```  
-
-    This should be familiar from previous sections.
-
-1. Send the request, you should get a 200 response back. If you go to your Event Viewer web app `https://<your-site-name>.azurewebsites.net`, you should now see a new event for the order you just placed.
-1. Try sending some more orders:
+1. 要求を送信し、ステータスコード 200 を受信。イベントビューワーを見るとイベントが表示される。
+1. 他の注文も送信:
     ```json
     {
       "orderId": "2",
@@ -199,30 +194,28 @@ npm install uuid@3.3.2 ms-rest-azure@2.6.0 azure-eventgrid@1.6.0 url@0.11.0 --sa
     }
     ```
 
-1. Now that you have your Topic setup and working, you can create as many Event Subscription on it as you need to trigger downstream applications and workflows in real-time.
+1. これでトピックの作成と動作確認が完了。必要に応じて後続処理を行うプログラムでイベントのサブスクリプションを作成可能。
 
-  Let's publish this new functionality.
+  最後に開発した関数を公開。
 
-1. Open the Azure Functions extension in VS Code and click the up-arrow icon to publish
-1. Choose the current folder, and select the function app created in step 1
-    1. You should see a notification that the app is updating
-1. Open your function in the Azure Portal, get the URLs, and verify the functions work in your published apps
+1. デバッグ停止後、Azure Functions 拡張機能より、「上矢印アイコン」をクリックして発行。
+1. 現在のフォルダをソースに、モジュール 1 で作成した関数アプリをターゲットに公開。
+    1. 画面右下に更新中のインジケーターが表示される。
+1. Azure ポータルで公開した関数を開き、URL を確認。公開済のアプリも同様に動作することを確認。
 
 </p></details>
 
-## Bonus
+## ボーナス
 
-BFYOC ice cream is always updating their ice cream offerings and you need to keep your franchise's ice cream availability constantly up to date. Each time BFYOC adds a new flavor, you'll need to update your CosmodDB from module two with the new offering. BFYOC now has a staff writer and a photographer, so each ice cream will be made available to you with the product data, description, and photo as separate files.
+BFYOC　は頻繁にアイスクリームのメニュー更新していて、フランチャイズでもその情報をリアルタイムに取得する必要があります。新しいフレーバーが追加されるたびに Cosmos DBを更新する必要があります。また BFYOC は商品情報について、より詳細な説明と写真も提供していますが、これらは別々のファイルになっています。
 
-### Pre-requisites
+### 前提条件
 
-* You must have your app backed by CosmosDB from module two. If you are stuck there or want to jump ahead, you can always use the answers folder in the previous modules.
+* モジュール 2 が完了していて、Cosmos DB が起動している。コードが手元にない場合は answer フォルダのコードを参照。
 
-### Bonus Challenge
+### ボーナスチャレンジ
 
-So far, you should have implemented a simple API to add products to CosmosDB using just a POST, however now that we have a staff writer and photographer, we don't want to add a product until the data, photo, and description are all available.
-
-Create a storage account of kind `storagev2 (general purpose v2)` or `blob` where your staff writer, photographer, and inventory manager will upload the files to blob storage. Once *all three* files are uploaded for a given ice cream, add a new document to CosmosDB with the aggregated information from all three files:
+これまでは Cosmos DB に対して POST を受け付ける関数を 1 提供していました。しかし現在は商品の情報に加え、詳細情報と写真が追加されており、これらすべて揃うまで商品情報を公開したくありません。そこで V2 のストレージアカウントかブロブストレージを作成し、商品に関わる全ての情報をアップロードしてもらい、すべての 3 の情報が揃った際に、すべての情報をまとめた以下のようなデータを Cosmos DB に情報を追加することにします。
 
 ```json
 {
@@ -234,41 +227,41 @@ Create a storage account of kind `storagev2 (general purpose v2)` or `blob` wher
 }
 ```
 
-To correlate the files, each will be prefixed with the product ID.
+ファイルの関連を明確にするために、すべてのファイルには プロダクト ID が付与されます。
 
-* Product data: JSON containing the product ID, flavor, and price as in the previous modules `081517EG-data.json`
-* Product description: Text file containing a few sentences describing the flavor `081517EG-description.txt`
-* Product photo: Photo of the product `081517EG-photo.png`
+* 商品データ: Product ID、フレーバー、値段が含まれた JSON データ。ファイル名は `081517EG-data.json` のようになる。
+* 商品の詳細な説明: 商品の詳細な情報を含めたテキストファイル。ファイル名は `081517EG-description.txt` のようになる。
+* 商品の写真: ファイル名は `081517EG-photo.png` のようになる。
 
-Two sets of sample files have been provided for you in the supporting-files folder of this module.
+`supporting-files` フォルダにサンプルデータを 2 つ用意しました。
 
 ### Tips
 
-1. Using Event Grid will allow you to subscribe to `Microsoft.Storage.BlobCreated` events and have then pushed anywhere in real time. [Here is a quickstart](https://docs.microsoft.com/en-us/azure/event-grid/blob-event-quickstart-portal).
-1. You can deploy a pre-built web app by clicking the button below to send your events to and see them flowing in real time. Super handy for testing.
+1. イベントグリッドでは `Microsoft.Storage.BlobCreated` イベントをサブスクライブできる。[こちらのクイックスタート](https://docs.microsoft.com/ja-jp/azure/event-grid/blob-event-quickstart-portal)を参照。
+1. 以下のボタンをクリックしてビューワーを作成できる。
 
     <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-event-grid-viewer%2Fmaster%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 
-    * Connect Event Subscriptions to the website by setting the Subscription's Endpoint to `https://<your-site-name>.azurewebsites.net/api/updates`.
-    * View your website by navigating to `https://<your-site-name>.azurewebsites.net`.
+    * イベントサブスクリプションのエンドポイントとして、`https://<your-site-name>.azurewebsites.net/api/updates` を登録。
+    * Web サイトでデータのフローが確認可能 `https://<your-site-name>.azurewebsites.net`
 
     ![View new site](./media/grid-viewer.png)
-1. You can choose to use [Durable Functions](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-overview) to create stateful functions in a serverless environment. This is one way of solving the problem of waiting for all three files to be available before creating your new document in CosmosDB.
+1. [Durable Functions](https://docs.microsoft.com/ja-jp/azure/azure-functions/durable-functions-overview) を使うとステートフルな関数を作成できる。これは 3 つのファイルが揃うまで待つような場合に有効な手段となる。
 
-1. Like all of the modules in this workshop, there are many ways of accomplishing this objective:
+1. 他のモジュール同様、複数の方法で目的を達成することが可能:
 
- * Durable functions with a suborchestrator intrance for each batch that waits for all three files.
- * Using a regular function and with each new file upload, check if all three of the batch are present.
- * Using the Logic Apps batch trigger.
- * Loading all files into Cosmos and then a second process that check for all three files of a given batch on some regular interval.
- * Many more...
+ * Durable functions と suborchestrator インスタンスを使って、すべてのファイルを待機する
+ * 通常の関数を使ってすべてのそれぞれのファイルをアップロードし、都度 3 つのファイルが揃っているか確認する
+ * ロジックアップを利用する
+ * 全てのファイルを Cosmos DB に追加して、別プロセスで 3 つのファイルが揃っているか定期的に確認する
+ * などなど
 
 
-## Documentation
+## ドキュメント
 
-* [An overview of Azure Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview)
-* [Blob Storage quickstart](https://docs.microsoft.com/en-us/azure/event-grid/blob-event-quickstart-portal)
-* [Custom Events quickstart](https://docs.microsoft.com/en-us/azure/event-grid/custom-event-quickstart-portal)
-* [How to receive events from Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/receive-events)
-* [Available tutorials, quickstarts, and docs on Event Sources](https://docs.microsoft.com/en-us/azure/event-grid/event-sources)
-* [Available tutorials, quickstarts, and docs on Event Handlers](https://docs.microsoft.com/en-us/azure/event-grid/event-handlers)
+* [Azure Event Grid とは](https://docs.microsoft.com/ja-jp/azure/event-grid/overview)
+* [クイック スタート: Azure portal で Blob Storage のイベントを Web エンドポイントにルーティングする](https://docs.microsoft.com/ja-jp/azure/event-grid/blob-event-quickstart-portal)
+* [クイック スタート: Azure portal と Event Grid を使ったカスタム イベントの Web エンドポイントへのルーティング](https://docs.microsoft.com/ja-jp/azure/event-grid/custom-event-quickstart-portal)
+* [HTTP エンドポイントへのイベントの受信](https://docs.microsoft.com/ja-jp/azure/event-grid/receive-events)
+* [Azure Event Grid のイベント ソース](https://docs.microsoft.com/ja-jp/azure/event-grid/event-sources)
+* [Azure Event Grid のイベント ハンドラー](https://docs.microsoft.com/ja-jp/azure/event-grid/event-handlers)

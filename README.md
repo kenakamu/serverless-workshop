@@ -1,21 +1,21 @@
 ---
-page_type: sample
+page_type: サンプル
 languages:
 - javascript
 products:
 - azure
-description: "Best For You Organics Company (BFYOC) is an ice cream company with over 200 stores worldwide. BFYOC has focused on fresh ingredients, locally sourced, and seasonal."
+description: "Best For You Organics Company (BFYOC) は全世界で 200 以上のアイスクリーム店を展開する企業です。 BFYOC は地元で採れた、旬で新鮮な素材にこだわります。"
 urlFragment: serverless-workshop 
 ---
 
-# Serverless Pre-Day Workshop
+# Serverless ワークショップ
 
 <img style="float: right;" height="160" src="https://serverlessoh.azureedge.net/public/ice-cream-2202561_320-circle.jpg" />
 
-**Best For You Organics Company (BFYOC)** is an ice cream company with over 200 stores worldwide. BFYOC has focused on fresh ingredients, locally sourced, and seasonal. Their 26 flavors range from the ordinary vanilla, to the ever popular avocado toast (which is a much better flavor than it sounds). They are now creating a new line of fruit flavored ice creams and are preparing to launch onto the market.
+**Best For You Organics Company (BFYOC)** は全世界で 200 以上のアイスクリーム店を展開する企業です。 BFYOC は地元で採れた、旬で新鮮な素材にこだわった 26 種類のアイスクリームを作っており、フレーバーは一般的なバニラ味から、大人気のアボカドトースト（名前の印象と違ってとても美味しい) まで幅広く取り揃えています。現在は新しくフルーツ味の商品ラインナップを開発中です。
 
-Because premium ingredients is key to their success, their profit margins are relatively low, as they try to keep prices affordable for consumers. As such, every sale needs to be optimized, and every customer needs to leave happy. They also need to cut costs whenever possible, which of course impacts their budget for new technology.
+プレミアムな材料を売りにしている一方、購入しやすい値段を設定しているため、利益はあまり出ません。そのため、お客様が商品購入後ハッピーである事と同時に、セールスプロセスを最適化する必要があります。コストを極力抑える必要があるため、テクノロジーに使える予算もあまりありません。
 
-BFYOC would like to launch a new customer feedback tool to analyze their sales and customer satisfaction levels. Because feedback posts from customers will be sporadic, they are looking for options that can automatically scale, and minimize investment in infrastructure.
+BFYOC は顧客満足度とセールスを分析するために、新しくフィードバックツール導入しようと思っています。フィードバックの量はその時々で変わるため、自動でスケールしてコストを最適化するようなソリューションを探しています。
 
-In addition, they would like to streamline their inventory and ordering process to reduce costs and product waste. They want to be able to notify distributors of new ice creams, and automate the processing of new orders based on inventory.
+また、在庫と発注プロセスを最適化してコストを下げるとともに、過剰商品の破棄を避けたいと思っています。そのため、販売業者に新商品の情報を通知した際、在庫に合わせて自動で発注ができるシステムが必要です。

@@ -1,29 +1,29 @@
-# Module 1 - Serverless API
+# モジュール 1 - サーバーレス API
 
-As part of BFYOC ice cream services they need to keep each franchise and branch connected with the catalogue of flavors that they offer.  As such you need a callable API each store and supporting systems can call for details on flavors offered.  
+BFYOC がサービスを提供するために、フランチャイズや支店が常に商品カタログに接続できる必要があります。そのため各店から商品や詳細を取得できる API が必要です。
 
-This module will walk you through building and testing your first Azure Function locally, and publishing to the cloud.  The Azure Function will be the serverless API to expose the data on the different flavors that you offer.
+このモジュールではローカルで Azure Function を開発し、その後クラウドに公開する方法を紹介します。この Azure Function が商品の詳細を公開するサーバーレス API となります。
 
-## Pre-requisites
+## 前提条件
 
-* A modern laptop running Windows 10, Mac OSX Mac OS X 10.12 or higher
-* Your preferred IDE (integrated development environments) - Visual Studio Code or Visual Studio
-    > NOTE: While you can complete this entire workshop in any language and editor you prefer, to make applicable to as many operating systems as possible most of the samples and examples will assume VS Code + JavaScript.  
-      * If using Visual Studio Code in Windows, OSX, or Linux make sure you have the latest Visual Studio Code version for your OS. You can follow <a href="https://code.visualstudio.com/tutorials/functions-extension/getting-started" target="_blank">the **first page** of pre-requisites as described here</a> to get the Azure Functions extension configured  
-      * If using Visual Studio for in Windows, make sure you have the <a href="https://www.visualstudio.com/vs/" target="_blank">latest Visual Studio 2017</a> with the `Azure development workload` selected.  
+* Windows 10、 Mac OS X、 Mac OS X 10.12 以上が動作する PC
+* Visual Studio Code や Visual Studio のような IDE
+    > メモ: 利用言語や IDE は任意で利用できますが、より多くの環境をサポートできるようにサンプルは VS Code と JavaScript で提供されます。  
+      * Visual Studio Code を使う場合は、最新版を使ってください。 <a href="https://code.visualstudio.com/tutorials/functions-extension/getting-started" target="_blank">こちらの **最初のページ** にある前提条件</a> を満たしてから Azure Functions 拡張機能を構成します。  
+      * Windows で Visual Studio を使う場合は <a href="https://www.visualstudio.com/vs/" target="_blank">最新の Visual Studio</a> で `Azure 開発ワークロード` がインスールされている事を確認してください。  
 * [.NET Core 2.1 SDK](https://www.microsoft.com/net/download)
-* [NodeJS 8 (LTS) or 10 (Current)](https://nodejs.org/en/download/)
+* [NodeJS 8 (LTS) または 10 (Current)](https://nodejs.org/en/download/)
 * [Azure Functions Core Tools v2](https://github.com/Azure/azure-functions-core-tools#installing)  
 
-## Challenge
+## チャレンジ
 
-Run and test an Azure Function locally where you can do a `GET` on a specific endpoint and pass in a product ID.  The product ID will return information on the product flavor.  For example if you did the following HTTP Request:
+Product ID を GET で渡せる Azure Function をローカルで実行してテストできるようにします。結果として渡した Product ID に関する商品の詳細を返してください。例えば以下のような HTTP 要求を送った場合:
 
 ```
 GET http://{myFunctionEndpoint}/api/products?id=1
 ```
 
-It would return:
+以下の結果を返します:
 
 ```json
 {
@@ -33,33 +33,32 @@ It would return:
 }
 ```
 
-For this challenge, just have the function return static data.  No need to connect to a database behind the scenes.
+このチャレンジでは静的なデータを返すようにするため、データベースに接続する必要はありません。ローカルで実行した後は Azure に公開してください。
 
-You or your team must be able to show this function running locally and published to Azure.
-
-**You should be writing this function in the latest v2 runtime. If non-Windows this is only option, if Windows be sure to select in Visual Studio or VS Code (may be listed as `beta`).**
+**Azure Function の開発は v2 ランタイムを利用してください。**
 
 ### Tips
 
-1. First things first, make sure you get the tools installed listed above.  
-1. Create a new Azure Function project and select the HTTP template.
-    * The HTTP function template will return "Hello, {name}", where name is a property passed in to a query parameter or as the body.
-    * Make changes to the HTTP template so instead of returning "Hello, {name}" it returns the above `json` payload when a query parameter `id` is set to `1`.
-1. Check out the [documentation](#documentation) for more guidance
+1. 前提条件を満たしているか確認。  
+1. 新規の Azure Function プロジェクトを作成して、HTTP テンプレートを選択。
+    * HTTP テンプレートは、クエリパラメーターで渡した name の値を使って、"Hello, {name}" を返す。
+    * クエリパラメーターの `id` が `1` の場合に、上記の `json` ペイロードを返す用に変更。
+1. 他の情報は[ドキュメント](#ドキュメント)参照。
 
-### Guided instructions
+### 詳細な手順
 
-<details><summary>Click to open</summary><p>
+<details><summary>クリックして開く</summary><p>
 
-1. Open Visual Studio Code
-1. Click on the extensions category on the left-hand nav and verify or install the **Azure Functions** extension (this may require restarting code)
-1. Click on the **Azure** category on the left-hand nav
-1. Open the **Functions** extension and verify you are signed into an Azure account
-1. Click the folder icon to create a new project - it will prompt you to select a folder to create the app in
-1. Choose "beta" or "~2" for the runtime if you are prompted, and select "JavaScript" for the language
-1. Click the lightning bolt icon in the Azure Functions extension to add a function to this app.  Select **HTTP Trigger** for the trigger.  Give it any name you like (I'll name "products")
-1. Select **Anonymous** for the authentication type.  **Function** would also work but requires a key is passed in a header or query parameter to execute the function once published.
-1. You should now see a default Azure Functions template like the following:
+1. Visual Studio Code を開く。
+1. 左のナビゲーションにある Extensions アイコンをクリックして、 **Azure Functions** 拡張がインストールされているか確認。
+1. 左のナビゲーションにある **Azure** アイコンをクリック。
+1. **Functions** を展開して、Azure にサインインしていることを確認。
+1. フォルダアイコンをクリックして新しいプロジェクトを作成。アプリを作成する場所を聞かれるので任意のフォルダを選択。
+1. ランタイムを聞かれた場合は、"beta" または "~2" を選択。言語は "JavaScript" を選択。
+1. **HTTP Trigger** をトリガーとして選択。名前は "products" とする。
+1. 承認レベルは **Anonymous** を選択。**Function** を選択した場合は公開後にキーをヘッダーかクエリパラメーターに渡す必要がある。
+1. **Open in new window** を選択。
+1. 以下のようなテンプレートを含むプロジェクトが作成される:
 
     ```javascript
     module.exports = async function (context, req) {
@@ -80,9 +79,9 @@ You or your team must be able to show this function running locally and publishe
     };
     ```
 
-    >IMPORTANT: If you don't see this template you may be targeting the ~1 runtime (wouldn't have the `async` modifier on the method) or using an out of date version of function core tools / extension
+    >重要: `async` キーワードが無いなどテンプレートが異なる場合、~1 ランタイムを選択した可能性があるので、ツールを最新にしてからプロジェクトを再作成
 
-1. Make the following changes so that your function returns the suggested string:
+1. コードを以下のように変更して、意図した結果を返す:
 
     ```javascript
     module.exports = async function (context, req) {
@@ -109,13 +108,13 @@ You or your team must be able to show this function running locally and publishe
     };
     ```
 
-    You may also notice in the file browser next to your `index.js` file there is a `function.json` file. Go ahead and open this and look. It describes the trigger you are using, and any bindings.  It should be set for HTTPTrigger.
+    尚、`index.js` ファイルと同じ階層に `function.json` ファイルがあり、ここに利用するトリガーやバインドの情報が設定されるため HTTPTrigger があるか開いて確認。
 
-1. Click **Debug** at the top and **Start Debugging**
+1. 上部メニューの **デバッグ** より **デバッグの開始** をクリック。
 
-    You should notice the Azure Functions runtime spins up in the terminal window.  If all the code is valid you should be prompted with a URL to call to execute the function.  Something like `http://localhost:7071/api/products`
+    ターミナルウィンドウで Azure Functions のランタイムが実行される様子を確認。コードが正しい場合、`http://localhost:7071/api/products` という API のアドレスが表示される。
 
-1. While the runtime is still running, click on the link or copy it to a browser to execute the function.  Make sure you append a query parameter for ID as specified.  So the call should be like `http://localhost:7071/api/products?id=1`.  You should see a response like the following returned:
+1. ランタイムが起動している状態で、表示されたアドレスをクリック。クエリにid を付与して実行。例えば `http://localhost:7071/api/products?id=1` というクエリにして実行した場合以下の結果が返ることを確認:
 
     ```json
     {
@@ -125,19 +124,18 @@ You or your team must be able to show this function running locally and publishe
     }
     ```
 
-1. The final step is publishing this app to Azure.  Kill the terminal (click the trash icon) to stop the runtime, and open the Azure Functions extension.
-1. Click the up-arrow icon in the Functions extension to publish, and select this app in the list.  Choose to **Create New Function App** and give it a *globally* unique name.  Create a new resource group and give it a name, and create a new storage account and give it a name.  Choose any region to publish.
-    
-1. You should see a prompt in the bottom right that the app is publishing.  Once the app is published you should be able to open your subscription and see the function.  You should be able to open the app and this HTTP function you have just created.  Click the **Get function URL** link in the function to get a URL, and validate you can invoke it and it executes in the cloud. (Be sure to append the query parameter)
+1. 動作を確認したらデバッグを停止。
+1. 最後に Azure に開発したアプリを公開。左側の Azure Function のメニューより、上矢印をクリックしてアプリケーションを発行。**Create New Function App** を選択して *グローバルで*ユニークな名前を指定。任意のリージョンを選択し、公開。    
+1. 右下にアプリ公開のインジケーターが表示される。公開が完了したら Azure ポータルから作成した**関数アプリ**を確認。公開した関数を開き、products 関数から **関数の URL の取得** リンクをクリックして URL をコピー。ブラウザを使ってテスト。(id パラメーターを忘れず渡す)
 
-Congratulations! You've now published an Azure Function as an API in the cloud.
+Congratulations! これで開発した API をクラウドに公開できました。
 
 </p></details>
 
-## Documentation
+## ドキュメント
 
-* <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview" target="_blank">An introduction to Azure Functions</a>
-* <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-test-a-function" target="_blank">Strategies for testing your code in Azure Functions</a>
-* <a href="https://code.visualstudio.com/tutorials/functions-extension/getting-started" target="_blank">Creating Azure Functions from Visual Studio Code</a> - this tutorial is for JavaScript but it is very similar for C#
-* <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-local" target="_blank">Code and test Azure Functions locally</a>
-* <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local" target="_blank">Code and test Azure Functions locally</a>
+* <a href="https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-overview" target="_blank">Azure Functions の概要</a>
+* <a href="https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-test-a-function" target="_blank">Azure Functions のコードをテストするための戦略</a>
+* <a href="https://code.visualstudio.com/tutorials/functions-extension/getting-started" target="_blank">Creating Azure Functions from Visual Studio Code</a> - このチュートリアルはJavaScript 用ですが、C# でも同じように使えます。
+* <a href="https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-develop-local" target="_blank">Azure Functions をローカルでコーディングしてテストする</a>
+* <a href="https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-run-local" target="_blank">Azure Functions Core Tools の操作</a>
