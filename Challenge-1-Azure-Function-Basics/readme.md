@@ -7,24 +7,11 @@ Best For You Organics Company (BFYOC) is ready to begin their serverless journey
 In this challenge you will create your first serverless
 function and deploy it to Azure.
 
-## Prerequisites
-
-* A modern laptop running Windows 10, Mac OSX, Mac OS X 10.12 or higher
-* Your preferred IDE (integrated development environment). Recommendations:
-  * [Visual Studio Code](https://code.visualstudio.com/)
-  * [Visual Studio](https://visualstudio.microsoft.com/)
-  * [Eclipse](https://www.eclipse.org/downloads/packages/)
-  * [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
-* .NET - [.NET Core 2.1 SDK or higher](https://dotnet.microsoft.com/download)
-* JavaScript - [NodeJS](https://nodejs.org/en/) (8.11.1 or 10.14.11 recommended)
-* [Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools#installing)
-
 ## Challenge
 
 ### Create a local function
 
-Your first goal is to create and debug an HTTP
-triggered Azure Function locally on your own development machine. This
+Your first goal is to create and debug an HTTP-triggered Azure Function locally on your development machine. This
 function has the following requirements:
 
 * **Verb**: GET
@@ -34,13 +21,13 @@ query parameter or an HTTP route
 {`productId`} is Starfruit Explosion"
 * **Sample request**:
 
-    ``` 
+    ``` HTTP
     GET http://localhost:7071/api/<your-function-name>?productId=2424
     ```
 
 ### Deploy to Azure
 
-The second goal is to create a Resource Group in your Azure Subscription, and deploy the function to Azure. To complete this goal, the following requirements must be satisfied:
+The second goal is to create a Resource Group in your Azure subscription, and deploy the function to Azure. To complete this goal, the following requirements must be satisfied:
 
 * **Create a Function App**: Create a new Function App that is hosted on the Consumption Plan.
 * **Deploy and Test**: Deploy your new function to the Function App.
@@ -51,9 +38,9 @@ The second goal is to create a Resource Group in your Azure Subscription, and de
 
 The following goals must be met to successfully complete this challenge:
 
-* Demonstrate that you created an HTTP triggered Azure Function locally that accepts a GET verb. Show that you can call that function and receive a successful response with the right text provided and the value of `productId` properly filled in.
+* Demonstrate that you created an HTTP-triggered Azure Function locally that accepts a GET verb. Show that you can call that function and receive a successful response with the right text provided and the value of `productId` properly filled in.
 
-* Show that you deployed that HTTP triggered
+* Show that you deployed that HTTP-triggered
 Azure Function to Azure. Call that deployed
 function and receive a successful response.
 

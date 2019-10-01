@@ -27,15 +27,15 @@ BFYOC will publish an event each time product feedback is received. They would l
 * Update the data payload for the event to resemble the following example:
 
 ```JSON
-    {
-        "Feedback": "customer feedback",
-        "Score": "sentiment score",
-        "Product": "product ID"
-    }
+{
+    "Feedback": "customer feedback",
+    "Score": "sentiment score",
+    "Product": "product ID"
+}
 ```
 
 * Set the `Event Time` property to the current UTC time.
-* Set the 'ID' property to a generated GUID.
+* Set the `ID` property to a generated GUID.
 * Set the `Subject` and `Event Type` properties to any strings values you wish.
 
 ### Create a subscription and handle events
@@ -45,7 +45,7 @@ To ensure that this is working end-to-end, BFYOC would like to see an example of
 * Review the list of [event handlers](https://docs.microsoft.com/en-us/azure/event-grid/event-handlers) for Event Grid.
 * Select a handler and create a subscription to the Event Grid topic. Possible options include:
   * A [Logic App](https://docs.microsoft.com/en-us/azure/event-grid/event-handlers#logic-apps) that is trigged by an Event Grid event.
-  * An Azure Function that uses the Event Grid or HTTP trigger.
+  * An [Azure Function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-grid) that uses the Event Grid or HTTP trigger.
   * The [Event Grid Viewer](https://github.com/Azure-Samples/azure-event-grid-viewer) that demonstrates how a webhook and website can be used to view incoming events.
 
 ## Success Criteria
