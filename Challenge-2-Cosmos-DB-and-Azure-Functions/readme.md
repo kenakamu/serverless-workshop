@@ -117,4 +117,4 @@ Once you have your function working and deployed, you have 2 options:
 
 1. proceed to the next challenge and begin - [Logic Apps](..//Challenge-3-Logic-Apps/readme.md).
 
-1. take a detour and attempt `Challenge 2b` with [Serverless Framework](..//Challenge-2b-Serverless/readme.md)
+1. take a detour and attempt `Challenge 2b` with [Serverless Framework](..//Challenge-2b-Serverless-Framework/readme.md)
