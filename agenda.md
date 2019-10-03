@@ -11,6 +11,7 @@ The agenda below is intended to serve as a sample.
 | 10:30 AM | 12:00 PM | Code Challenge                              |
 | 12:00 PM | 1:00 PM  | Lunch Break                                 |
 | 1:00 PM  | 1:30 PM  | Using Serverless Framework with Azure       |
-| 1:30 PM  | 1:45 PM  | Break                                       |
-| 1:45 PM  | 4:30 PM  | Code Challenge                              |
+| 1:30 PM  | 3:00 PM  | Code Challenge                              |
+| 3:00 PM  | 3:15 PM  | Break                                       |
+| 3:15 PM  | 4:30 PM  | Code Challenge                              |
 | 4:30 PM  | 5:00 PM  | Wrap Up                                     |
