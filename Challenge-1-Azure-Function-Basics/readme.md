@@ -14,6 +14,7 @@ function and deploy it to Azure.
 Your first goal is to create and debug an HTTP-triggered Azure Function locally on your development machine. This
 function has the following requirements:
 
+* **Name**: Call the new function `GetProduct`
 * **Verb**: GET
 * **Input parameters**: A `productId` value is passed to it as a
 query parameter or an HTTP route
