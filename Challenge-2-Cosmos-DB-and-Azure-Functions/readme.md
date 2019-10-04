@@ -15,7 +15,8 @@ The diagram above shows how [Azure Functions](https://azure.microsoft.com/en-us/
 Provision and configure an instance of Cosmos DB as the database for the BFYOC products.
 
 - Review the [binding options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2) for Cosmos DB and Azure Functions.
-- Leverage the SQL API if you wish to use the Azure Functions bindings support.
+- Select the SQL API and create a container for the products.
+- Set the partition key for the container to `/productId`
 
 ### Create the APIs
 
@@ -36,15 +37,12 @@ Your challenge is to create and deploy the following three functions:
 
 - **Requirements**
 
-  - Add a property called `id` with a GUID value
-  - Add a property called `timestamp` with the current UTC date time
+  - Add a property called `timestamp` with the current UTC date and time
   - Add the product to the Cosmos DB data store
-  - Return the entire JSON payload with the newly created `id` and
-      `timestamp`, for example:
+  - Return the entire JSON payload with the newly created `timestamp`, for example:
 
       ```JSON
       {
-        "id": "79c2779e-dd2e-43e8-803d-ecbebed8972c",
         "productId": "75542e38-563f-436f-adeb-f426f1dabb5c",
         "productName": "Starfruit Explosion",
         "productDescription": "This starfruit ice cream is out of this world!",
@@ -54,16 +52,15 @@ Your challenge is to create and deploy the following three functions:
 
 - **GetProduct**
 
+  - This will be an update to the function that was created in [Challenge 1](..//Challenge-1-Azure-Function-Basics/readme.md).
   - **Verb**: GET
   - **QueryString or route parameter**: `productId`
   - **Requirements**
 
-    - Get the product from your database and return the entire JSON payload for
-      the product identified by the id, for example:
+    - Get the product from your database and return the entire JSON payload, for example:
 
         ```JSON
         {
-          "id": "79c2779e-dd2e-43e8-803d-ecbebed8972c",
           "productId": "75542e38-563f-436f-adeb-f426f1dabb5c",
           "productName": "Starfruit Explosion",
           "productDescription": "This starfruit ice cream is out of this world!",
@@ -82,14 +79,12 @@ Your challenge is to create and deploy the following three functions:
         ```JSON
         [
           {
-              "id": "79c2779e-dd2e-43e8-803d-ecbebed8972c",
               "productId": "75542e38-563f-436f-adeb-f426f1dabb5c",
               "productName": "Starfruit Explosion",
               "productDescription": "This starfruit ice cream is out of this world!",
               "timestamp": "2019-09-14 21:27:47Z"
           },
           {
-              "id": "76065ecd-8a14-426d-a4cd-abbde2acbb10",
               "productId": "e94d85bc-7bd0-44f3-854e-d8cd70348b63",
               "productName": "Tropical Mango",
               "productDescription": "You know what they say... It takes two.  You.  And this ice cream.",
@@ -110,6 +105,7 @@ Your challenge is to create and deploy the following three functions:
 - [Azure Cosmos DB bindings for Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2)
 - [Azure Functions HTTP and webhook bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook)
 - [Store unstructured data using Azure Functions and Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/azure-functions/functions-integrate-store-unstructured-data-cosmosdb)
+- [Function Recipes - Cosmos DB Bindings](https://docs.microsoft.com/en-us/sandbox/functions-recipes/cosmos-db?tabs=csharp)
 
 ## Next Challenge
 
