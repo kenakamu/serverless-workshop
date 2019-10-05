@@ -38,11 +38,11 @@ BFYOC にとって顧客満足度は最重要指標です。そのため BFYOC �
   
 1. [Azure ポータル](https://portal.azure.com) を開く。
 1. Azure ポータルから Cloud Shell を開く。
-1. Cloud Shell 上 (Bash/PowerShell 何れも可) で下記のコマンドを実行し、モジュール 2 で作成した Cosmos DB に `reviews` コレクションを作成する。<BR>
+1. Cloud Shell 上 (Bash/PowerShell 何れも可) で下記のコマンドを実行し、モジュール 2 で作成した Cosmos DB に `reviews` コレクションを作成する。
 ```
 az cosmosdb sql container create --resource-group $RESOURCE_GROUP --account-name $ACCOUNT_NAME --database-name icecream --name reviews
 ```
-1. Logic App を作成する。
+4. Logic App を作成する。
 1. 作成した Logic App を開き、テンプレートより **空のロジックアプリ** を選択。
 1. トリガーで `Azure Event Grid` を検索して選択し、`リソースイベントが発生したとき` を選択。
 1. Azure ポータルにサインインしているアカウントでサインインを実行。
@@ -52,7 +52,7 @@ az cosmosdb sql container create --resource-group $RESOURCE_GROUP --account-name
 ```
 POST http://{myFunctionEndpoint}/api/iceCreamOrder
 ```
-1. デザイナーを右上の [x] で閉じて、「最新の情報に更新」をクリック。構成が正しく行われていれば実行結果が表示される。
+10. デザイナーを右上の [x] で閉じて、「最新の情報に更新」をクリック。構成が正しく行われていれば実行結果が表示される。
 ![Refresh Logic Apps](./images/refresh.jpg)
 1. トリガーされていることを確認したら、**編集** ボタンからエディターに戻る。**新しいステップ** より `JSON の解析` を検索して追加。
 1. **コンテンツ**には動的なオブジェクトより、`データオブジェクト` を選択。
@@ -65,7 +65,8 @@ POST http://{myFunctionEndpoint}/api/iceCreamOrder
 }
 ```
 ![Parse Json Schema](./images/parse-json-schema.jpg)
-1. **新しいステップ** より `Cosmos Db` を検索して、`1 つのドキュメントを取得する` を選択。任意の接続名を入力いれ、一覧よりモジュール 2 で作成した Cosmos DB を選択して **作成** をクリック。
+
+14. **新しいステップ** より `Cosmos Db` を検索して、`1 つのドキュメントを取得する` を選択。任意の接続名を入力いれ、一覧よりモジュール 2 で作成した Cosmos DB を選択して **作成** をクリック。
 1. **データベース ID**　で `icecream`、**コレクション ID** で `products` を選択。**ドキュメント ID** で動的なコンテンツより `itemOrdered` を選択。
 1. `JSON の解析` を次のアクションに追加して、ドキュメントの `本文` を **コンテンツ**に追加。以下のペイロードでスキーマを作成。
 ```json
@@ -75,7 +76,7 @@ POST http://{myFunctionEndpoint}/api/iceCreamOrder
   "price-per-scoop": 3.99
 }
 ```
-1. **新しいステップ** より Office 365 Outlook か Outlook.com の `オプションを指定してメールを送信します` アクションを追加。必要に応じてサインインを実行。
+17. **新しいステップ** より Office 365 Outlook か Outlook.com の `オプションを指定してメールを送信します` アクションを追加。必要に応じてサインインを実行。
 1. **宛先** を動的コンテンツより、最初の JSON 解析結果より `email`　を選択。**件名**に `BFYOC values your feedback` を入力。 **ユーザーオプション**に `Very satisfied, Satisfied, Neutral, Unsatisfied, Very unsatisfied` を入力し、本文は適当に入力。
 ![Email with options](./images/email-options.jpg)
 1. ユーザーから返信があると、その結果が取得できます。**新しいステップ** より `Cosmos DB` を検索し、`ドキュメントを作成または更新する` を選択。
