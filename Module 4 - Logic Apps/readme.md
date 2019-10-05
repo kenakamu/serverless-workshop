@@ -37,6 +37,11 @@ BFYOC にとって顧客満足度は最重要指標です。そのため BFYOC �
 <details><summary>クリックして開く</summary><p>
   
 1. [Azure ポータル](https://portal.azure.com) を開く。
+1. Azure ポータルから Cloud Shell を開く。
+1. Cloud Shell 上 (Bash/PowerShell 何れも可) で下記のコマンドを実行し、モジュール 2 で作成した Cosmos DB に `reviews` コレクションを作成する。<BR>
+```
+az cosmosdb sql container create --resource-group $RESOURCE_GROUP --account-name $ACCOUNT_NAME --database-name icecream --name reviews
+```
 1. Logic App を作成する。
 1. 作成した Logic App を開き、テンプレートより **空のロジックアプリ** を選択。
 1. トリガーで `Azure Event Grid` を検索して選択し、`リソースイベントが発生したとき` を選択。
