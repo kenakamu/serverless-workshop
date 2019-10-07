@@ -55,7 +55,7 @@ Add the user feedback, along with the sentiment score, to a new collection in th
 
 BFYOC would like to notify their customer service representatives immediately if there are any unfavorable comments.
 
-* **Conditional logic**: When sentiment analysis score is below `.70`, send an email from the Logic App to an address that you can monitor.
+* **Conditional logic**: When sentiment analysis score is below `0.70`, send an email from the Logic App to an address that you can monitor.
 * **Email**: Select an action from the list of email providers (examples: Office 365, SendGrid and Gmail)
 * **Contents**: Include in the email body the sentiment score and user feedback.
 
