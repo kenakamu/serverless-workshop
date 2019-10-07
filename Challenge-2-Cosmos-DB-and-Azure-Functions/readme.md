@@ -35,11 +35,11 @@ Your challenge is to create and deploy the following three functions:
       }
       ```
 
-- **Requirements**
+  - **Requirements**
 
-  - Add a property called `timestamp` with the current UTC date and time
-  - Add the product to the Cosmos DB data store
-  - Return the entire JSON payload with the newly created `timestamp`, for example:
+    - Add a property called `timestamp` with the current UTC date and time
+    - Add the product to the Cosmos DB data store
+    - Return the entire JSON payload with the newly created `timestamp`, for example:
 
       ```JSON
       {
@@ -95,7 +95,7 @@ Your challenge is to create and deploy the following three functions:
 
 ## Success Criteria
 
-- Test all three functions and deploy them to Azure.
+- Test all three functions and deploy them to Azure. Use a client such as [cURL](https://curl.haxx.se/) or [Postman](https://www.getpostman.com/).
 - The endpoints should return standard HTTP status codes. For example, 404 when items are not found.
 
 ## References
