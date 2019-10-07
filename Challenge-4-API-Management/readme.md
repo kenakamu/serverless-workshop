@@ -75,6 +75,7 @@ BFYOC does not anticipate their list of products changing frequently and would l
 * [Subscriptions in API Management](https://docs.microsoft.com/en-us/azure/api-management/api-management-subscriptions)
 * [API Gateway pattern](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern)
 * [Use an external cache](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-cache-external)
+* [Create an OpenAPI definition for a serverless API using Azure API Management](https://docs.microsoft.com/en-us/azure/azure-functions/functions-openapi-definition)
 
 ## Next Challenge
 
