@@ -111,6 +111,6 @@ BFYOC の商品を保存できるよう、Cosmos DB の作成と構成を行い�
 
 このチャレンジが完了したら、次のチャレンジは以下より選択:
 
-1. 次のチャレンジである [Logic Apps](..//challenge-3-Logic-Apps/readme.md) に進む。
+1. 次のチャレンジである [Logic Apps](..//Challenge-3-Logic-Apps/readme.md) に進む。
 
-1. 本チャレンジの代替え手段を模索する `チャレンジ 2b` である [サーバーレスフレームワーク](..//challenge-2b-Serverless-Framework/readme.md) に進む。
+1. 本チャレンジの代替え手段を模索する チャレンジ 2b である [サーバーレスフレームワーク](..//Challenge-2b-Serverless-Framework/readme.md) に進む。
