@@ -58,4 +58,4 @@ BFYOC は顧客満足度とセールスを分析するために、新しくフ�
 
 ## 次のステップ
 
-準備ができたら、はじめのチャレンジである [Azure Function の作成とデプロイ](./challenge-1-Azure-Function-Basics/readme.md) に進んでください。
+準備ができたら、はじめのチャレンジである [Azure Function の作成とデプロイ](./Challenge-1-Azure-Function-Basics/readme.md) に進んでください。
