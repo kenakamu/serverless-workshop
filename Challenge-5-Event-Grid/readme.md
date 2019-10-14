@@ -21,7 +21,7 @@ Event Grid のイベントソースは Blob ストレージや Azure Maps、リ�
 
 ### イベントのパブリッシュ
 
-BFYOC はフィードバックを受けるたびにイベントをパブリッシュします。その実現のため、[チャレンジ 3](..//challenge-3-Logic-Apps/readme.md) で作成した Logic App から通知を送ります:
+BFYOC はフィードバックを受けるたびにイベントをパブリッシュします。その実現のため、[チャレンジ 3](..//Challenge-3-Logic-Apps/readme.md) で作成した Logic App から通知を送ります:
 
 * Logic App に作成した Event Grid トピックにイベントを送るアクションを追加
 * データペイロードを以下の例ように作成:
@@ -50,7 +50,7 @@ BFYOC はフィードバックを受けるたびにイベントをパブリッ�
 
 ## 達成条件
 
-* 新しいフィードバックを[チャレンジ 4](..//challenge-4-API-Management/readme.md) で開発した外部 API に送信
+* 新しいフィードバックを[チャレンジ 4](..//Challenge-4-API-Management/readme.md) で開発した外部 API に送信
 * 上記で選択したハンドラーでイベントを受信できることを確認
 
 ## 参考情報
