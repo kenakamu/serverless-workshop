@@ -2,7 +2,7 @@
 
 Best For You Organics Company (BFYOC) はサーバーレスでの開発を行うにあたり、Azure Functions から試すことにしました。そのため、まずローカルでの開発とテストができるように、開発環境とツールを構成する必要があります。
 
-![Functions](../Images/Challenge1.png)
+![Functions](../Images/challenge1.png)
 
 このチャレンジでは、Azure Function の作成とデプロイを行います。
 
