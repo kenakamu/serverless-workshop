@@ -2,7 +2,7 @@
 
 Best For You Organics Company (BFYOC) はサーバーレスでの開発を行うにあたり、Azure Functions から試すことにしました。そのため、まずローカルでの開発とテストができるように、開発環境とツールを構成する必要があります。
 
-![Functions](../Images/チャレンジ1.png)
+![Functions](../Images/Challenge1.png)
 
 このチャレンジでは、Azure Function の作成とデプロイを行います。
 
@@ -56,4 +56,4 @@ Best For You Organics Company (BFYOC) はサーバーレスでの開発を行う
 
 ## 次のチャレンジ
 
-関数が動作したら、次のチャレンジである [Cosmos DB と Azure Functions](..//チャレンジ-2-Cosmos-DB-and-Azure-Functions/readme.md) に進んでください。
+関数が動作したら、次のチャレンジである [Cosmos DB と Azure Functions](..//Challenge-2-Cosmos-DB-and-Azure-Functions/readme.md) に進んでください。
