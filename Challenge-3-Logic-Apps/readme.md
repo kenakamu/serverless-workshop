@@ -4,7 +4,7 @@ At Best For You Organics Company (BFYOC) では顧客満足度は最重要です
 
 現在 [Logic Apps](https://azure.microsoft.com/ja-jp/services/logic-apps/) を使ったワークフローで必要な処理が行えるか検討しています。
 
-![Functions and Cosmos DB](../Images/Challenge3.png)
+![Functions and Cosmos DB](../Images/challenge3.png)
 
 上の図はこのチャレンジ完了に必要な Azure サービスを示しています。
 
@@ -75,4 +75,4 @@ BFYOC では顧客満足度が低い場合、カスタマーサービス担当�
 
 ## 次のチャレンジ
 
-Logic App が期待通りに動作したら、次のチャレンジである [API Management](..//challenge-4-API-Management/readme.md) に進む。
+Logic App が期待通りに動作したら、次のチャレンジである [API Management](..//Challenge-4-API-Management/readme.md) に進む。
