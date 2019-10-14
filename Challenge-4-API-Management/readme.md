@@ -24,8 +24,8 @@ BFYOC は統一されたアドレスを使う API を作成するよう開発者
 
 ### 商品とフィードバック API のインポート
 
-* [チャレンジ 2](..//challenge-2-Cosmos-DB-and-Azure-Functions/readme.md) で作成した Azure Functions を API Management サービスにインポート
-* [チャレンジ 3](..//challenge-3-Logic-Apps/readme.md) で作成した Logic App を API Management サービスにインポート
+* [チャレンジ 2](..//Challenge-2-Cosmos-DB-and-Azure-Functions/readme.md) で作成した Azure Functions を API Management サービスにインポート
+* [チャレンジ 3](..//Challenge-3-Logic-Apps/readme.md) で作成した Logic App を API Management サービスにインポート
 * Azure ポータルでそれぞれの API をテスト
 
 ### フィードバック API のバージョニングとスロットリング
