@@ -1,82 +1,82 @@
-# Challenge 4 - API Management
+# チャレンジ 4 - API Management
 
-Now that the APIs for Best For You Organics Company (BFYOC) are complete, it's time to make them public so that they can be called from their mobile and web applications. In the future, BFYOC might also want to share these APIs with their external partners.
+これまでのチャレンジで Best For You Organics Company (BFYOC) が必要とする API は揃いました。次にモバイルクライアントや Web アプリから呼び出せるよう、外部に公開する必要があります。また将来的には外部のパートナーにも API を公開したいと考えています。
 
-## API Gateway Pattern
+## API ゲートウェイパターン
 
-Rather than direct client-to-service communication, BFYOC would prefer to avoid the coupling that occurs between client applications and their backend services. In addition, they would like to address cross-cutting concerns such as authorization, logging and other considerations from a single location. Best For You Organics Company would like to introduce the [API Gateway pattern](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern#what-is-the-api-gateway-pattern) as part of their solution.
+BFYOC は API を外部に直接公開して、クライアントとサービスが密結合になることを避けたいと考えています。また認証やロギング、統一されたアドレスなどの全 API に共通した問題を解決にも取り組む必要があります。BFYOC は [API ゲートウェイパターン](https://docs.microsoft.com/ja-jp/dotnet/architecture/microservices/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern#what-is-the-api-gateway-pattern) をソリューションに適用する予定です。
 
-![Functions and Cosmos DB](../Images/challenge4.png)
+![API Management](../Images/Challenge4.png)
 
-The image above illustrates how [API Management](https://docs.microsoft.com/en-us/azure/api-management/) is leveraged as a gateway service to BFYOCs backend APIs.
+上の図は [API Management](https://docs.microsoft.com/ja-jp/azure/api-management/) をバックエンド API のゲートウェイとする様子を示しています。
 
-## Challenge
+## チャレンジ
 
-### Create an API Management Instance
+### API Management の作成
 
-BFYOC would like for you to create a uniformly addressed version of their APIs. They would like to expose all their APIs under the same base URL, as they currently are under different base URLs.
+BFYOC は統一されたアドレスを使う API を作成するよう開発者であるあなたに依頼しました。現在はそれぞれの API で異なるアドレスが利用されていますが、全ての API は同じベースアドレスで公開されることが必要となります。
 
-Create a new instance of API Management that meets the following requirements:
+新しく API Management インスタンスを構築して上記要件を満たします:
 
-* Hosted on the `Consumption` tier.
-  * Please note that the Consumption tier is currently only available in a subset of Azure regions.
-* Provide a unique name for the API Management service.
+* `従量課金プラン` を使用
+  * ※現在従量課金プランが使えるリージョンは限られています
+* API Management サービスでユニークな名前を指定
 
-### Import the Products and Feedback APIs
+### 商品とフィードバック API のインポート
 
-* Import the Function App (Products) from [Challenge 2](..//Challenge-2-Cosmos-DB-and-Azure-Functions/readme.md) into the API Management service.
-* Import the Logic App (Feedback) from [Challenge 3](..//Challenge-3-Logic-Apps/readme.md) into the API Management service.
-* Test the APIs from within the Azure portal.
+* [チャレンジ 2](..//challenge-2-Cosmos-DB-and-Azure-Functions/readme.md) で作成した Azure Functions を API Management サービスにインポート
+* [チャレンジ 3](..//challenge-3-Logic-Apps/readme.md) で作成した Logic App を API Management サービスにインポート
+* Azure ポータルでそれぞれの API をテスト
 
-### Version the Feedback API and add Rate Limiting
+### フィードバック API のバージョニングとスロットリング
 
-BFYOC is concerned that the Feedback API might be called too frequently and would like to limit the number of times it can be invoked within a certain time frame. They would also like to add this new functionality under a new version of the API without having to make any changes to the Logic App. To achieve these goals, you will have to:
+BFYOC はフィードバック API が頻繁に呼ばれることを懸念していて、一定時間で実行できる回数を制限したいと考えています。またこのスロットリング機能は別のバージョンとして公開して、現在の API には影響が無いようにしたいです。そのためには以下の作業が必要です。
 
-* Create a new version of the imported Feedback API (Logic App) and call it `v2`.
-* Add a rate limit policy that will only allow the operation to be called 2 times within 10 seconds.
-* Add the policy at the operation scope.
+* フィードバック API (Logic App) で新しいバージョンを作成して `v2` とする
+* 10 秒間に 2 回までしか API が実行できないようにポリシーを追加
+* ポリシーは operation スコープで作成
 
-:bulb: Rate limiting by key isn't available in the Consumption tier of API Management. You will have to use the rate-limit policy instead:
+:bulb: 従量課金プランでは `rate-limit-by-key` によるスロットリングができないため、要求 `rate-limit` ポリシーを使用 [参考](https://docs.microsoft.com/ja-jp/azure/api-management/api-management-sample-flexible-throttling#custom-key-based-throttling)):
 
 ``` XML
-    <rate-limit calls="number" renewal-period="seconds" />
+<rate-limit calls="number" renewal-period="seconds" />
 ```
 
-### Make the APIs Public
+### API を外部公開する
 
-With API Management now in place as a facade to their backend APIs, it's time to make them publicly accessible for clients and other services to consume. BFYOC will like for you to make these APIs secure and available by doing the following:
+API Management のバックエンド API の構成が完了したため、次に API の外部公開を行います。BFYOC は API がセキュアで高可用性を満たすようにしたいと考えています。
 
-* Create a `Product` on the API Management service that is publicly enabled and requires a subscription.
-* Create a subscription for the recently created product. Each subscription will provide you with a set of keys.
-* Associate the APIs with the product.
+* `Product` を API Management サービスに作成して、サブスクリプションを必須にする
+* 作成した product 用のサブスクリプションを作成する
+* API を product を紐づける
 
-## Success Criteria
+## 達成条件
 
-* Confirm that the API Management service is running on the Consumption tier.
-* Call the APIs from [cURL](https://curl.haxx.se/) or [Postman](https://www.getpostman.com/) using a subscription key.
-* Confirm that rate limiting is working on the `v2` version of the Logic App API.
+* API Management サービスが従量課金プランで構成されていることを確認
+* [cURL](https://curl.haxx.se/) や [Postman](https://www.getpostman.com/) でサブスクリプションを指定して API を実行
+* `v2` フォードバック API でスロットリングが機能するか確認
 
-## Bonus Challenge
+## ボーナスチャレンジ
 
-### Add Cache Support
+### キャッシュサポートの追加
 
-BFYOC does not anticipate their list of products changing frequently and would like to employ some caching on the Azure Functions that retrieve their product information. To make this happen, they are asking you to:
+BFYOC の商品は頻繁に変わらないため、キャッシュを有効に利用できます。そこで BFYOC はあなたに以下の追加機能を依頼しました:
 
-* Add caching support to the GET operations of the Products API.
-* Cache the results for 60 seconds.
+* Products API の Get に対してキャッシュを有効にする
+* キャッシュは 60 秒有効とする
 
-## References
+## 参考情報
 
-* [Create a new Azure API Management service instance](https://docs.microsoft.com/en-us/azure/api-management/get-started-create-service-instance)
-* [Import and publish your first API](https://docs.microsoft.com/en-us/azure/api-management/import-and-publish)
-* [Publish multiple versions of your API](https://docs.microsoft.com/en-us/azure/api-management/api-management-get-started-publish-versions)
-* [Azure API Management Consumption tier](https://azure.microsoft.com/en-ca/updates/azure-api-management-consumption-tier-is-now-generally-available/)
-* [API Management access restriction policies](https://docs.microsoft.com/en-us/azure/api-management/api-management-access-restriction-policies#AccessRestrictionPolicies)
-* [Subscriptions in API Management](https://docs.microsoft.com/en-us/azure/api-management/api-management-subscriptions)
-* [API Gateway pattern](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern)
-* [Use an external cache](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-cache-external)
-* [Create an OpenAPI definition for a serverless API using Azure API Management](https://docs.microsoft.com/en-us/azure/azure-functions/functions-openapi-definition)
+* [Azure API Management サービスの新しいインスタンスの作成](https://docs.microsoft.com/ja-jp/azure/api-management/get-started-create-service-instance)
+* [最初の API のインポートと発行](https://docs.microsoft.com/ja-jp/azure/api-management/import-and-publish)
+* [API の複数のバージョンを発行する](https://docs.microsoft.com/ja-jp/azure/api-management/api-management-get-started-publish-versions)
+* [Azure API Management の従量課金レベルの一般提供開始](https://azure.microsoft.com/ja-jp/updates/azure-api-management-consumption-tier-is-now-generally-available/)
+* [API Management アクセス制限ポリシー](https://docs.microsoft.com/ja-jp/azure/api-management/api-management-access-restriction-policies#AccessRestrictionPolicies)
+* [Azure API Management のサブスクリプション](https://docs.microsoft.com/ja-jp/azure/api-management/api-management-subscriptions)
+* [API ゲートウェイ パターンと、クライアントからマイクロサービスへの直接通信との比較](https://docs.microsoft.com/ja-jp/dotnet/architecture/microservices/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern)
+* [Azure API Management で外部の Azure Cache for Redis を使用する](https://docs.microsoft.com/ja-jp/azure/api-management/api-management-howto-cache-external)
+* [Azure API Management を使用してサーバーレス API の OpenAPI 定義を作成する](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-openapi-definition)
 
-## Next Challenge
+## 次のチャレンジ
 
-Once you have API Management in place, proceed to the next challenge and begin - [Event Grid](..//Challenge-5-Event-Grid/readme.md).
+API Management の構築が完了したら、次のチャレンジである [Event Grid](..//challenge-5-Event-Grid/readme.md) に進む。

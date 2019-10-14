@@ -1,66 +1,59 @@
-# Challenge 1 - Create and deploy your first Azure Function
+# チャレンジ 1 - Azure Function の作成とデプロイ
 
-Best For You Organics Company (BFYOC) is ready to begin their serverless journey and has decided to start with Azure Functions. Their first step will be to setup their developers with the tools and configuration necessary to create and test their code locally.
+Best For You Organics Company (BFYOC) はサーバーレスでの開発を行うにあたり、Azure Functions から試すことにしました。そのため、まずローカルでの開発とテストができるように、開発環境とツールを構成する必要があります。
 
-![Functions and Cosmos DB](../Images/challenge1.png)
+![Functions](../Images/チャレンジ1.png)
 
-In this challenge you will create your first serverless
-function and deploy it to Azure.
+このチャレンジでは、Azure Function の作成とデプロイを行います。
 
-## Challenge
+## チャレンジ
 
-### Create a local function
+### ローカルの関数を作成する
 
-Your first goal is to create and debug an HTTP-triggered Azure Function locally on your development machine. This
-function has the following requirements:
+初めのゴールはローカルで HTTP トリガーの Azure Function の開発とデバッグを行うことです。開発する関数の仕様は以下の通りです:
 
-* **Name**: Call the new function `GetProduct`
-* **Verb**: GET
-* **Input parameters**: A `productId` value is passed to it as a
-query parameter or an HTTP route
-* **Response**: "The product name for your product id
-{`productId`} is Starfruit Explosion"
-* **Sample request**:
+* **関数名**: `GetProduct`
+* **HTTP Verb**: GET
+* **インプットパラメーター**: `productId` をクエリパラメーターまたは HTTP パスの一部として渡す
+* **応答**: productId に対応する製品名。ここでは Starfruit Explosion を利用
+* **サンプル要求**:
 
     ``` HTTP
     GET http://localhost:7071/api/<your-function-name>?productId=2424
     ```
 
-### Deploy to Azure
+### Azure へのデプロイ
 
-The second goal is to create a Resource Group in your Azure subscription, and deploy the function to Azure. To complete this goal, the following requirements must be satisfied:
+次のゴールは Azure サブスクリプションにリソースグループを作成し、Azure Functions をデプロイすることです。以下の条件を満たすようにしてください:
 
-* **Create a Function App**: Create a new Function App that is hosted on the Consumption Plan.
-* **Deploy and Test**: Deploy your new function to the Function App.
+* **関数アプリの作成**: 従量課金プランの関数アプリを新規に作成
+* **デプロイとテスト**: ローカルで開発した関数をデプロイしてテストを実施
 
-**Make sure to use different, unique Function App names!**
+**関数名はユニークなものを使うようにしてください**
 
-## Success Criteria
+## 達成条件
 
-The following goals must be met to successfully complete this challenge:
+このチャレンジを達成するために、以下条件を満たす必要があります:
 
-* Demonstrate that you created an HTTP-triggered Azure Function locally that accepts a GET verb. Show that you can call that function and receive a successful response with the right text provided and the value of `productId` properly filled in.
+* ローカルで開発した Azure Function が HTTP GET によって `productId` を受け取れ、その結果を表示できることを提示すること。
 
-* Show that you deployed that HTTP-triggered
-Azure Function to Azure. Call that deployed
-function and receive a successful response.
+* ローカルで開発した関数を Azure にデプロイできたことおよび実行状況を提示すること。
 
-## References
+## 参考
 
-* [An introduction to Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)
-* Review the [Supported Languages in Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/supported-languages)
-  guide and go into the specific guide for the language you are using
-* [Strategies for testing your code in Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-test-a-function)
-* [Code and test Azure Functions locally](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-local)
-* [Azure Functions HTTP and webhook bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook)
-* [Azure Functions with Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code)
-* [Azure Functions with Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio)
-* [Create your first Azure function with Java and IntelliJ](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-maven-intellij)
-* [Create your first Azure function with Java and Eclipse](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-maven-eclipse)
-* [Quickstart: Use Java to create and publish a function to Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-java-maven)
-* [Python: Create an HTTP triggered function in Azure](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-python)
-* [Create your first PowerShell function in Azure](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-powershell)
+* [Azure Functions の概要](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-overview)
+* [Azure Functions でサポートされている言語](https://docs.microsoft.com/ja-jp/azure/azure-functions/supported-languages) より利用する言語のガイドを確認
+* [Azure Functions のコードをテストするための戦略](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-test-a-function)
+* [Azure Functions をローカルでコーディングしてテストする](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-develop-local)
+* [Azure Functions のトリガーとバインド](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-bindings-http-webhook)
+* [Visual Studio Code を使用して Azure Functions を開発する](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-develop-vs-code)
+* [Visual Studio を使用して初めての関数を作成する](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-create-your-first-function-visual-studio)
+* [Java と IntelliJ を使用して初めての Azure 関数を作成する](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-create-maven-intellij)
+* [Java と Eclipse を使用して初めての関数を作成する](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-create-maven-eclipse)
+* [クイック スタート:Java を使用して関数を作成し、Azure Functions に発行する](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-create-first-java-maven)
+* [Python: Azure で HTTP によってトリガーされる関数を作成する](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-create-first-function-python)
+* [Azure で初めての PowerShell 関数を作成する (プレビュー)](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-create-first-function-powershell)
 
-## Next Challenge
+## 次のチャレンジ
 
-Once you have your function working and deployed, proceed to the next challenge and begin - [Cosmos DB and Azure Functions](..//Challenge-2-Cosmos-DB-and-Azure-Functions/readme.md).
+関数が動作したら、次のチャレンジである [Cosmos DB と Azure Functions](..//チャレンジ-2-Cosmos-DB-and-Azure-Functions/readme.md) に進んでください。

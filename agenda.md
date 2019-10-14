@@ -1,17 +1,17 @@
-# Agenda
+# アジェンダ
 
-The agenda below is intended to serve as a sample.
+以下のアジェンダは目安として利用してください。
 
-| From     | To       | Session                                     |
-|----------|----------|---------------------------------------------|
-| 8:30 AM  | 9:00 AM  | Check-in & breakfast                        |
-| 9:00 AM  | 10:00 AM | Azure Serverless Overview                   |
-| 10:00 AM | 10:15 AM | Break                                       |
-| 10:15 AM | 10:30 AM | Challenge Overview                          |
-| 10:30 AM | 12:00 PM | Code Challenge                              |
-| 12:00 PM | 1:00 PM  | Lunch Break                                 |
-| 1:00 PM  | 1:30 PM  | Using Serverless Framework with Azure       |
-| 1:30 PM  | 3:00 PM  | Code Challenge                              |
-| 3:00 PM  | 3:15 PM  | Break                                       |
-| 3:15 PM  | 4:30 PM  | Code Challenge                              |
-| 4:30 PM  | 5:00 PM  | Wrap Up                                     |
+| 開始 | 終了 | セッション |
+|---|---|---|
+| 8:30 AM | 9:00 AM | チェックイン & 朝食 |
+| 9:00 AM | 10:00 AM | Azure サーバーレス概要 |
+| 10:00 AM | 10:15 AM | 休憩 |
+| 10:15 AM | 10:30 AM | チャレンジの概要 |
+| 10:30 AM | 12:00 PM | チャレンジ実施 |
+| 12:00 PM | 1:00 PM | ランチ休憩 |
+| 1:00 PM | 1:30 PM | Azure でサーバーレスフレームワークの利用 |
+| 1:30 PM | 3:00 PM | チャレンジ実施 |
+| 3:00 PM | 3:15 PM | 休憩 |
+| 3:15 PM | 4:30 PM | チャレンジ実施 |
+| 4:30 PM | 5:00 PM | まとめ |

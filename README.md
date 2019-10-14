@@ -1,48 +1,61 @@
-# Azure Serverless Workshop
+---
+page_type: サンプル
+languages:
+- javascript
+products:
+- azure
+description: "Best For You Organics Company (BFYOC) は全世界で 200 以上のアイスクリーム店を展開する企業です。 BFYOC は地元で採れた、旬で新鮮な素材にこだわります。"
+urlFragment: serverless-workshop 
+---
 
-## Overview
+# Serverless ワークショップ
 
-Imagine spending your time building and deploying great applications without the burden of managing servers. This is possible with serverless computing, where you no longer have to plan for or manage the infrastructure required to support your apps. With serverless, you can focus your efforts on the business logic and innovation that will bring your great apps to market faster.
+## 概要
+サーバーレスで開発をするということは、サーバー管理を気にせず、開発に集中できる環境が手に入るということです。アプリケーションをサポートするためのインフラを気にする必要も、サポートする必要もありません。サーバーレスでは、開発者はビジネスロジックとアプリがもたらすイノベーションに集中することができ、また公開までの時間もずっと短縮できます。
 
-In this full-day, challenge-based workshop, you will learn about designing and building serverless solutions on Azure. You’ll experience hands-on time writing and publishing your code with [Azure Functions](https://azure.microsoft.com/en-us/services/functions/), building workflows and integrating with other services using [Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/), and protecting and managing your APIs with [Azure API Management](https://azure.microsoft.com/en-us/services/api-management/), and building reactive, event-driven solutions using [Event Grid](https://azure.microsoft.com/en-us/services/event-grid/). We will even share a few tips for a solution to migrate serverless workloads with just a few lines of code using the [Serverless Framework](https://serverless.com/)!
+このワークショップはチャレンジベースとなっていて、一日で Azure 上でサーバーレスソリューションをデザインして実装する手法が学べるようにデザインされています。Azure Functions の実装と公開、Logic Apps を使って他サービスと統合するワークフローの実装、またそれらの API を管理するための API Management の構築や、イベント駆動ソリューションを実装するための Event Grid の使い方を学びます。
 
-Your code, logic, and imagination is all you need to bring – the serverless platform will take care of the rest.  
+その他、サーバーレスフレームワークを使って数行でサーバーレスにマイグレーションを行うテクニックも学べます。
 
-## Target Audience
+開発者は、コードとロジックおよび想像力だけがあればよく、サーバーレスプラットフォームがその他全てを担当してくれます。
 
-* This event is targeted at software engineer / developer roles.  However anyone interested in learning more about Azure and serverless functionality is welcome to attend.  Please review the [prerequisites](./prereqs.md) to ensure your environment is ready for the workshop.
+## ワークショップの対象者
 
-* This event is especially beneficial to those that work with organizations who are planning to build serverless architectures on the cloud or organizations planning to automate business processes.
+このイベントはソフトウェアエンジニアおよび開発者を対象としていますが、Azure とサーバーレステクノロジーに興味がればどなたでも参加可能です。前提条件を確認して環境を準備してください。また、特にサーバーレスアーキテクチャを採用する予定のある組織や、ビジネスプロセスの自動化を検討している方々にメリットが多くあります。
 
-## Preface
+## ワークショップで登場する企業について
+
+本ワークショップでは、あなたは以下に説明のある企業の技術者という設定です。アプリケーションの背景を把握するため、内容をしっかりと読んだください。
 
 <img style="float: right;" height="160" src="https://serverlessoh.azureedge.net/public/ice-cream-2202561_320-circle.jpg" />
 
-**Best For You Organics Company (BFYOC)** is an ice cream company with over 200 stores worldwide. BFYOC has focused on fresh ingredients, locally sourced, and seasonal. Their 26 flavors range from the ordinary vanilla, to the ever popular avocado toast (which is a much better flavor than it sounds). They are now creating a new line of fruit flavored ice creams and are preparing to launch onto the market.
+**Best For You Organics Company (BFYOC)** は全世界で 200 以上のアイスクリーム店を展開する企業です。 BFYOC は地元で採れた、旬で新鮮な素材にこだわった 26 種類のアイスクリームを作っており、フレーバーは一般的なバニラ味から、大人気のアボカドトースト（名前の印象と違ってとても美味しい) まで幅広く取り揃えています。現在は新しくフルーツ味の商品ラインナップを開発中です。
 
-Because premium ingredients are key to their success, their profit margins are relatively low, as they try to keep prices affordable for consumers. As such, every sale needs to be optimized, and every customer needs to leave happy. They also need to cut costs whenever possible, which of course impacts their budget for new technology.
+プレミアムな材料を売りにしている一方、購入しやすい値段を設定しているため、利益はあまり出ません。そのため、お客様が商品購入後ハッピーである事と同時に、セールスプロセスを最適化する必要があります。コストを極力抑える必要があるため、テクノロジーに使える予算もあまりありません。
 
-BFYOC would like to launch a new customer feedback tool to analyze their sales and customer satisfaction levels. Because feedback posts from customers will be sporadic, they are looking for options that can automatically scale, and minimize investment in infrastructure.
+BFYOC は顧客満足度とセールスを分析するために、新しくフィードバックツール導入しようと思っています。フィードバックの量はその時々で変わるため、自動でスケールしてコストを最適化するようなソリューションを探しています。
 
-## Challenges
+また、在庫と発注プロセスを最適化してコストを下げるとともに、過剰商品の破棄を避けたいと思っています。そのため、販売業者に新商品の情報を通知した際、在庫に合わせて自動で発注ができるシステムが必要です。
 
-Over the next [several hours](./agenda.md), you will use multiple Azure Serverless components to build an API which will be a key part of BFYOC's new customer feedback tool.
+## チャレンジ
 
-| Challenge                      | Description       |
+[次の数時間で](./agenda.md)、Azure 上のサーバレスコンポーネントを駆使して BFYOC の新しいカスタマーフィードバックシステムのキーとなる API を開発します。
+
+| チャレンジ                      | 説明       |
 |--------------------------------|-------------------|
-| Azure Function Basics          | Create a basic HTTP-triggered Azure Function and deploy it to Azure.  |
-| Cosmos DB and Azure Functions  | Create a HTTP-triggered Azure Function which uses output bindings to persist data to Cosmos DB.  |
-| Logic Apps                     | Create a Logic App workflow which accepts user feedback via an HTTP post, detects the sentiment of the feedback, persists the feedback in a Cosmos DB database, and sends an email for unfavorable feedback.  |
-| API Management                 | Use API Management to provide a uniform API endpoint, as well as API versioning and rate limiting.  |
-| Event Grid                     | Use Event Grid to publish events to multiple subscribers whenever customer feedback is received.  |
-| Serverless Framework           | Use the Azure plug-in for Serverless Framework to explore an alternative approach to creating and deploying an HTTP-triggered Azure Function which uses Cosmos DB.  |
+| Azure Function の基礎 | HTTP トリガーで実行される Azure Function の作成とデプロイ |
+| Cosmos DB と Azure Functions | HTTP トリガーで実行される Azure Function で Cosmos DB アウトプットバインディングを使用したデータの書き込み |
+| Logic Apps | HTTP POST として送信されるユーザーフィードバックを受信し、文章から感情分析を実施した後 Cosmos DB に保存。また評価の低いフィードバックに関してメールを送信する Logic App ワークフローの作成 |
+| API Management | API Management を使った統一的な API エンドポイントの公開およびバージョン管理、スロットリングの実施 |
+| Event Grid | Event Grid を使ってカスタマーフィードバックを複数のサブスクライバーの公開  |
+| サーバーレスフレームワーク | Azure のサーバレスフレームワークプラグインを利用して、HTTP トリガーで Cosmos DB にデータを保存する　Azure Function の代替えアプローチの模索 |
 
-### Challenge Path
+### チャレンジの工程
 
-The diagram below provides an overview of your journey. You can choose to complete the challenges sequentially, from challenge 1 through to challenge 5.  Alternatively, you can elect to complete the Serverless Framework challenge after challenge 2 (since the two challenges are very similar), and then continue with challenge 3.  You can think of challenge 2b as an exciting detour before continuing on your Azure Serverless journey.
+以下の図はチャレンジの工程を示しています。全てのチャレンジを順番に実施することもできますし、サーバーレスフレームワークチャレンジ (チャレンジ 2b) を Azure Functions (チャレンジ 2) の後に実施して、その後チャレンジ 3 に進むこともできます。チャレンジ 2b は 2 と似ていますが、異なるアプローチを模索するチャレンジであるため、余裕があれば少し寄り道をして知見を広げてみてください。
 
-![Challenge Path Overview](./Images/challenge-path.png)
+![チャレンジ Path Overview](./Images/チャレンジ-path.png)
 
-## Next
+## 次のステップ
 
-Are you ready?  Proceed to your first challenge - [creating and deploying an Azure Function](./Challenge-1-Azure-Function-Basics/readme.md).
+準備ができたら、はじめのチャレンジである [Azure Function の作成とデプロイ](./チャレンジ-1-Azure-Function-Basics/readme.md) に進んでください。

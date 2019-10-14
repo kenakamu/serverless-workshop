@@ -1,31 +1,31 @@
-# Challenge 2 - Cosmos DB and Azure Functions
+# チャレンジ 2 - Cosmos DB and Azure Functions
 
-Best For You Organics Company (BFYOC) has begun the creation of a mobile application and website, both of which will be used to update products and submit feedback for their ice cream. The website and application will be calling a set of APIs.
+Best For You Organics Company (BFYOC) は、商品情報の作成と取得、およびユーザーがフィードバックできる機能をモバイルおよび Web で提供することにしました。モバイルアプリと Web は同じバックエンド API を利用します。
 
-BFYOC would like you to create the APIs that enable users to add and retrieve information about their products.
+BFYOC は開発者であるあなたに、商品情報の保存と取得ができる API の開発を依頼してきました。
 
 ![Functions and Cosmos DB](../Images/challenge-2.png)
 
-The diagram above shows how [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) will be leveraged to provide the APIs for the clients. [Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/) will be the database used to persist all the product and relevant information.
+この図は、モバイルアプリと Web クライアントが [Azure Functions](https://azure.microsoft.com/ja-jp/services/functions/) で公開された API を経由して、[Cosmos DB](https://docs.microsoft.com/ja-jp/azure/cosmos-db/) へデータ保存したり取得を行う様子を示しています。
 
-## Challenge
+## チャレンジ
 
-### Create a Cosmos DB instance on Azure
+### Cosmos DB インスタンスの作成
 
-Provision and configure an instance of Cosmos DB as the database for the BFYOC products.
+BFYOC の商品を保存できるよう、Cosmos DB の作成と構成を行います。
 
-- Review the [binding options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2) for Cosmos DB and Azure Functions.
-- Select the SQL API and create a container for the products.
-- Set the partition key for the container to `/productId`
+- [Azure Functions 2.x の Azure Cosmos DB バインド](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-bindings-cosmosdb-v2) の詳細を確認
+- SQL API を指定して Cosmos DB を作成
+- コンテナの partition key は `/productId` を指定
 
-### Create the APIs
+### API の作成
 
-Your challenge is to create and deploy the following three functions:
+このチャレンジでは、以下 3 つの関数を開発してデプロイします。
 
 - **CreateProduct**
 
-  - **Verb**: POST
-  - **Input payload example**:
+  - **HTTP Verb**: POST
+  - **インプットペイロードのサンプル**:
 
       ```JSON
       {
@@ -35,11 +35,12 @@ Your challenge is to create and deploy the following three functions:
       }
       ```
 
-  - **Requirements**
+  - **要件**
 
-    - Add a property called `timestamp` with the current UTC date and time
-    - Add the product to the Cosmos DB data store
-    - Return the entire JSON payload with the newly created `timestamp`, for example:
+    - `timestamp` プロパティにレコード作成時点の UTC 時刻を保持
+    - Cosmos DB に商品情報を保存
+    - 応答には作成した商品と追加された `timestamp` を返す
+    例:
 
       ```JSON
       {
@@ -52,12 +53,12 @@ Your challenge is to create and deploy the following three functions:
 
 - **GetProduct**
 
-  - This will be an update to the function that was created in [Challenge 1](..//Challenge-1-Azure-Function-Basics/readme.md).
-  - **Verb**: GET
-  - **QueryString or route parameter**: `productId`
-  - **Requirements**
+  - [チャレンジ 1](..//Chanllenge1-Azure-Function-Basics/readme.md) で作成した関数を拡張
+  - **HTTP Verb**: GET
+  - **クエリーストリングまたはパラメーター**: `productId`
+  - **要件**
 
-    - Get the product from your database and return the entire JSON payload, for example:
+    - 以下のようにデータベースより商品情報を応答として返す:
 
         ```JSON
         {
@@ -70,11 +71,10 @@ Your challenge is to create and deploy the following three functions:
 
 - **GetProducts**
 
-  - **Verb**: GET
-  - **Requirements**
+  - **HTTP Verb**: GET
+  - **要件**
 
-    - Get all the products from the database and return the entire
-      JSON payload for each one, for example:
+    - 全商品の情報を JSON ペイロードとして返す:
 
         ```JSON
         [
@@ -93,24 +93,24 @@ Your challenge is to create and deploy the following three functions:
         ]
         ```
 
-## Success Criteria
+## 達成条件
 
-- Test all three functions and deploy them to Azure. Use a client such as [cURL](https://curl.haxx.se/) or [Postman](https://www.getpostman.com/).
-- The endpoints should return standard HTTP status codes. For example, 404 when items are not found.
+- 3 つの関数をすべて Azure にデプロイしてテストを行う。テストには [cURL](https://curl.haxx.se/) や [Postman](https://www.getpostman.com/) を利用する。
+- エンドポイントで適切な HTTP ステータスコードを返す。例えば存在しない商品を検索した場合は、404 を返す。
 
-## References
+## 参照情報
 
-- [Azure Functions triggers and bindings concepts](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
-- [Introduction to Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
-- [Azure Cosmos DB bindings for Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2)
-- [Azure Functions HTTP and webhook bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook)
-- [Store unstructured data using Azure Functions and Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/azure-functions/functions-integrate-store-unstructured-data-cosmosdb)
-- [Function Recipes - Cosmos DB Bindings](https://docs.microsoft.com/en-us/sandbox/functions-recipes/cosmos-db?tabs=csharp)
+- [Azure Functions でのトリガーとバインドの概念](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-triggers-bindings)
+- [Azure Cosmos DB の概要](https://docs.microsoft.com/ja-jp/azure/cosmos-db/introduction)
+- [Azure Functions 2.x の Azure Cosmos DB バインド](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-bindings-cosmosdb-v2)
+- [Azure Functions のトリガーとバインド](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-bindings-http-webhook)
+- [Azure Functions と Azure Cosmos DB を使用して非構造化データを格納する](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-integrate-store-unstructured-data-cosmosdb)
+- [Cosmos DB (DocumentDB) Bindings(英語)](https://docs.microsoft.com/en-us/sandbox/functions-recipes/cosmos-db?tabs=csharp)
 
-## Next Challenge
+## 次のチャレンジ
 
-Once you have your function working and deployed, you have 2 options:
+このチャレンジが完了したら、次のチャレンジは以下より選択:
 
-1. proceed to the next challenge and begin - [Logic Apps](..//Challenge-3-Logic-Apps/readme.md).
+1. 次のチャレンジである [Logic Apps](..//challenge-3-Logic-Apps/readme.md) に進む。
 
-1. take a detour and attempt `Challenge 2b` with [Serverless Framework](..//Challenge-2b-Serverless-Framework/readme.md)
+1. 本チャレンジの代替え手段を模索する `チャレンジ 2b` である [サーバーレスフレームワーク](..//challenge-2b-Serverless-Framework/readme.md) に進む。

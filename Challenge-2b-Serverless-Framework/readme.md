@@ -1,18 +1,18 @@
-# Challenge 2b - Cosmos DB and Azure Functions with Serverless Framework
+# チャレンジ 2b - サーバーレスフレームワークでの Cosmos DB と Azure Functions
 
-Best For You Organics Company (BFYOC) is interested in learning about an alternative approach to deploying serverless components such as Azure Functions. They're considering a multi-cloud approach, and are interested in learning more about Serverless Framework and how it could be a tool in BFYOC's cloud adoption journey.
+Best For You Organics Company (BFYOC) はチャレンジ 2 の代替え手段として、マルチクラウドアプローチを検討しており、サーバーレスフレームワークを学び、今後活かす方法の検討を行いたいと思っています。
 
-![Serverless Framework and Azure Functions](../Images/challenge2b.png)
+![サーバーレスフレームワークと Azure Functions](../Images/challenge2b.png)
 
-## Challenge
+## チャレンジ
 
-Review the scenario and API definitions stated in [Challenge 2](../Challenge-2b-Serverless-Framework/readme.md), and implement the API using Serverless Framework instead of native Azure Functions tooling.
+[チャレンジ 2](../Challenge-2b-Serverless-Framework/readme.md) の内容を確認して、ネイティブでの Azure Functions の代わりにサーバーレスフレームワークでの Cosmos DB と Azure Functions の利用を行う。
 
-## References
+## 参照
 
-- [How to Create a REST API with Azure Functions and the Serverless Framework](https://serverless.com/blog/serverless-azure-functions-v1)
-- [Serverless docs](https://serverless.com/framework/docs/providers/azure/)
+- [How to Create a REST API with Azure Functions and the Serverless Framework (英語)](https://serverless.com/blog/serverless-azure-functions-v1)
+- [Serverless docs (英語)](https://serverless.com/framework/docs/providers/azure/)
 
-## Next Challenge
+## 次のチャレンジ
 
-Once you have your function working and deployed, proceed to the next challenge and begin - [Logic Apps](../Challenge-3-Logic-Apps/readme.md).
+関数の作成とデプロイが完了したら、次のチャレンジである [Logic Apps](../Challenge-3-Logic-Apps/readme.md) に進む。

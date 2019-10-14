@@ -1,29 +1,29 @@
-# Requirements
+# 前提条件
 
-## Azure Subscription
+## Azure サブスクリプション
 
-In order to complete the challenges, you will need access to either an [Azure Subscription](https://azure.microsoft.com/en-us/free/) or [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups) for which you are either an [Owner or Contributor role](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#built-in-role-descriptions).
+チャレンジを実施するにあたり、[Azure サブスクリプション](https://azure.microsoft.com/ja-jp/free/) または任意の [リソースグループ](https://docs.microsoft.com/ja-jp/azure/azure-resource-manager/resource-group-overview#resource-groups) に対して [Owner または Contributer](https://docs.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#built-in-role-descriptions) ロールが必要です。
 
-## Development Environment
+## 開発環境
 
-The challenges in this workshop are intended to be completed by software engineers / developers.  As such, a modern development environment is needed.  The development environment should be running one of the following operating systems:
+このチャレンジはソフトウェアエンジニアおよび開発者を対象としているため、モダンな開発環境が必要です。以下のいずれかの環境を用意してください:
 
 * Windows 10
 * Mac OSX
-* Mac OS X 10.12 or higher.
+* Mac OS X 10.12 以降
 
-You will also need your preferred IDE (integrated development environment) in order to develop and debug your code in the challenges.  The following popular IDEs are recommended:
+上記 OS に加え、任意の IDE (統合開発環境) が必要です。以下 IDE を推奨します:
 
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/)
 * [Eclipse](https://www.eclipse.org/downloads/packages/)
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
-## Azure Tools
+## Azure ツール
 
-You will also need to ensure your favorite development languages and Azure-specific tools are installed.
+上記 IDE に Azure 開発ツールを事前に導入してください。
 
-* .NET - [.NET Core 2.1 SDK or higher](https://dotnet.microsoft.com/download)
-* JavaScript - [NodeJS](https://nodejs.org/en/) (8.11.1 or 10.14.11 recommended)
-* The latest version of the [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local).
-* The latest version of the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
+* .NET - [.NET Core 2.1 SDK 以降](https://dotnet.microsoft.com/download)
+* JavaScript - [NodeJS](https://nodejs.org/en/) (8.11.1 または 10.14.11 推奨)
+* 最新の [Azure Functions Core Tools](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-run-local)
+* 最新の [Azure CLI](https://docs.microsoft.com/ja-jp/cli/azure/install-azure-cli?view=azure-cli-latest)

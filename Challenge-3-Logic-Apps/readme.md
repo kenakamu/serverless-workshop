@@ -1,22 +1,22 @@
-# Challenge 3 - Logic Apps
+# チャレンジ 3 - Logic Apps
 
-At Best For You Organics Company (BFYOC), customer satisfaction is of the utmost importance. To provide customers with the best products, BFYOC would like to provide a customer survey to collect feedback.
+At Best For You Organics Company (BFYOC) では顧客満足度は最重要です。最高の商品を届けるためにも、BFYOC はカスタマーフィードバックを集めるシステムを構築したいと考えています。
 
-BFYOC would like you to use [Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/) as the workflow engine and integration platform to connect all the necessary pieces for this new feature.
+現在 [Logic Apps](https://azure.microsoft.com/ja-jp/services/logic-apps/) を使ったワークフローで必要な処理が行えるか検討しています。
 
-![Functions and Cosmos DB](../Images/challenge3.png)
+![Functions and Cosmos DB](../Images/Challenge3.png)
 
-The image above highlights the Azure services that will be leveraged to complete this challenge.
+上の図はこのチャレンジ完了に必要な Azure サービスを示しています。
 
-## Challenge
+## チャレンジ
 
-### Create a HTTP triggered Logic App
+### HTTP トリガーの Logic App を作成
 
-Create a new Logic App that is triggered by a HTTP request. Use the sample payload provided below to generate a schema for the incoming request.
+新しく HTTP トリガーの Logic App を作成します。以下のサンプルペイロードを使用して、入力要求を作成します。
 
-* **Verb**: POST
+* **HTTP Verb**: POST
 
-* **Input payload example**:
+* **入力ペイロードのサンプル**:
 
     ``` JSON
     {
@@ -26,20 +26,20 @@ Create a new Logic App that is triggered by a HTTP request. Use the sample paylo
     }
     ```
 
-### Detect the Sentiment of the User Feedback
+### ユーザーフィードバックの感情分析を行う
 
- Detect the sentiment of the `userFeedback` field to receive a numeric score between 0 and 1. Scores close to 1 indicate a positive sentiment, while scores close to 0 are indicative of a negative sentiment.
+ `userFeedback` フィールドで提供されるユーザーのフィードバックについて感情分析を行い、0 ～ 1 の間の数値をスコアとします。1 に数値が近いほどポジティブな意見であり、0 に近いほどネガティブな意見であるとします。
 
-* **Cognitive Services**: Provision an instance of Cognitive Services to support text analysis.
+* **Cognitive サービス**: Cognitive Services を使って感情分析を行います
 
-* **Detect Sentiment**: Retrieve the numeric score for the `userFeedback` field by leveraging one of the Cognitive Services actions for text analysis.
+* **感情分析**: `userFeedback` フィードの文章を Cognitive Services のテキスト分析アクションで解析します。
 
-### Store the Feedback and Score in Cosmos DB
+### フィードバックを Cosmos DB に保存
 
-Add the user feedback, along with the sentiment score, to a new collection in the Cosmos DB database that was created in the previous challenge.
+感情分析結果と共に、ユーザーフィードバックを前回のチャレンジで作成した Cosmos DB データベースに保存します。
 
-* **Partition key**: Use the `productId` as the partition key.
-* **Feedback example**:
+* **パーティション キー**: `productId` 
+* **フィードバックの例**:
 
     ``` JSON
     {
@@ -51,28 +51,28 @@ Add the user feedback, along with the sentiment score, to a new collection in th
     }
     ```
 
-### Email Notifications for Feedback
+### フィードバックの結果をメールで通知
 
-BFYOC would like to notify their customer service representatives immediately if there are any unfavorable comments.
+BFYOC では顧客満足度が低い場合、カスタマーサービス担当者にメールで通知したいと考えています。
 
-* **Conditional logic**: When sentiment analysis score is below `0.70`, send an email from the Logic App to an address that you can monitor.
-* **Email**: Select an action from the list of email providers (examples: Office 365, SendGrid and Gmail)
-* **Contents**: Include in the email body the sentiment score and user feedback.
+* **条件分岐**: 感情分析の結果が `0.70` 以下の場合、Logic App から監視対象であるメールボックスに通知を送信
+* **メール**: 任意の Email プロバイダーを利用 (例: Office 365, SendGrid または Gmail 等)
+* **コンテンツ**: メール本文に感情分析のスコアをフィードバックを含める
 
-## Success Criteria
+## 達成条件
 
-* Invoke the Logic App with a HTTP request from a client such as [cURL](https://curl.haxx.se/) or [Postman](https://www.getpostman.com/).
-* Test with both negative and positive feedback results.
-* Confirm that emails are sent only for scores below `.70`.
-* Review and inspect the run history of the Logic App to validate the results.
+* [cURL](https://curl.haxx.se/) や [Postman](https://www.getpostman.com/) を使って Logic App を HTTP トリガーで起動
+* ポジティブとネガティブ両方のフィードバックをテスト
+* 感情分析のスコアが `.70` 以下の場合にメールが送信されることを確認
+* Logic App の実行履歴より結果と内容を検証
 
-## References
+## 参照情報
 
-* [Quickstart: Create your first automated workflow with Azure Logic Apps - Azure portal](https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-first-logic-app-workflow)
-* [Tutorial: Create automated approval-based workflows by using Azure Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/tutorial-process-mailing-list-subscriptions-workflow)
-* [Create conditional statements that control workflow actions in Azure Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-control-flow-conditional-statement)
-* [Sentiment detection](https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email#add-sentiment-detection)
+* [クイック スタート:Azure Logic Apps を使用して自動化されたワークフローを初めて作成する - Azure portal](https://docs.microsoft.com/ja-jp/azure/logic-apps/quickstart-create-first-logic-app-workflow)
+* [チュートリアル:Azure Logic Apps を使用して承認ベースの自動化されたワークフローを作成する](https://docs.microsoft.com/ja-jp/azure/logic-apps/tutorial-process-mailing-list-subscriptions-workflow)
+* [Azure Logic Apps のワークフロー アクションを制御する条件付きステートメントを作成する](https://docs.microsoft.com/ja-jp/azure/logic-apps/logic-apps-control-flow-conditional-statement)
+* [感情の検出を追加する](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-twitter-email#add-sentiment-detection)
 
-## Next Challenge
+## 次のチャレンジ
 
-Once you have your Logic App working, proceed to the next challenge and begin - [API Management](..//Challenge-4-API-Management/readme.md).
+Logic App が期待通りに動作したら、次のチャレンジである [API Management](..//challenge-4-API-Management/readme.md) に進む。
