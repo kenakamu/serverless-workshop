@@ -6,7 +6,7 @@ Best For You Organics Company (BFYOC) は新 API の実装とフィードバッ�
 
 BFYOC は組織内で商品のフィードバックを共有したいと考えています。どの程度のサービスがフィードバック情報を使うか見当がつかないため、[パブリッシャーとサブスクライバーのパターン](https://docs.microsoft.com/ja-jp/azure/architecture/patterns/publisher-subscriber) を利用して通知することにしました。
 
-![Event Grid](../Images/Challenge5.png)
+![Event Grid](../Images/challenge5.png)
 
 上の図は、[Azure Event Grid](https://azure.microsoft.com/ja-jp/services/event-grid/) を使って複数のサブスクライバーにパブリッシャーより情報を通知する様子を示しています。
 
