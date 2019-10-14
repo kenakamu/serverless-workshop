@@ -6,7 +6,7 @@
 
 BFYOC は API を外部に直接公開して、クライアントとサービスが密結合になることを避けたいと考えています。また認証やロギング、統一されたアドレスなどの全 API に共通した問題を解決にも取り組む必要があります。BFYOC は [API ゲートウェイパターン](https://docs.microsoft.com/ja-jp/dotnet/architecture/microservices/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern#what-is-the-api-gateway-pattern) をソリューションに適用する予定です。
 
-![API Management](../Images/Challenge4.png)
+![API Management](../Images/challenge4.png)
 
 上の図は [API Management](https://docs.microsoft.com/ja-jp/azure/api-management/) をバックエンド API のゲートウェイとする様子を示しています。
 
@@ -79,4 +79,4 @@ BFYOC の商品は頻繁に変わらないため、キャッシュを有効に�
 
 ## 次のチャレンジ
 
-API Management の構築が完了したら、次のチャレンジである [Event Grid](..//challenge-5-Event-Grid/readme.md) に進む。
+API Management の構築が完了したら、次のチャレンジである [Event Grid](..//Challenge-5-Event-Grid/readme.md) に進む。
