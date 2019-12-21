@@ -105,6 +105,7 @@ BFYOC の商品を保存できるよう、Cosmos DB の作成と構成を行い�
 - [Azure Functions 2.x の Azure Cosmos DB バインド](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-bindings-cosmosdb-v2)
 - [Azure Functions のトリガーとバインド](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-bindings-http-webhook)
 - [Azure Functions と Azure Cosmos DB を使用して非構造化データを格納する](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-integrate-store-unstructured-data-cosmosdb)
+- [Azure Cosmos Emulator を使用してローカルで開発する](https://docs.microsoft.com/ja-jp/azure/cosmos-db/local-emulator)
 - [Cosmos DB (DocumentDB) Bindings(英語)](https://docs.microsoft.com/en-us/sandbox/functions-recipes/cosmos-db?tabs=csharp)
 
 ## 次のチャレンジ
